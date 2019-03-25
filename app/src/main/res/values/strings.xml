@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RetroWallpaper</string>
+    <string name="wallpaper">wallpaper</string>
+    <string name="butt1">Set Wallpaper</string>
+    <string name="navTitle">Retro Wallpaper</string>
+    <string name="navItem1">Image Library</string>
+    <string name="navItem2">Settings</string>
+    <string name="navItem3">Upgrade</string>
+    <string name="navItem4">About</string>
+</resources>
