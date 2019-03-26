@@ -10,6 +10,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -67,6 +68,18 @@ public class MainActivity extends Activity {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
+                        if(menuItem.getItemId() == R.id.nav_1){
+                            Log.i("Menu Item",menuItem.getItemId() + "");
+                        }
+                        else if(menuItem.getItemId() == R.id.nav_2){
+                            Log.i("Menu Item",menuItem.getItemId() + "");
+                        }
+                        else if(menuItem.getItemId() == R.id.nav_3){
+                            Log.i("Menu Item",menuItem.getItemId() + "");
+                        }
+                        else if(menuItem.getItemId() == R.id.nav_4){
+                            Log.i("Menu Item",menuItem.getItemId() + "");
+                        }
                         menuItem.setChecked(true);
                         // close drawer when item is tapped
                         drawerLayout.closeDrawers();
