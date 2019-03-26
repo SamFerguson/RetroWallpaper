@@ -21,6 +21,7 @@ public class MainActivity extends Activity {
 
     Button butt1;
     private DrawerLayout drawerLayout;
+    private final int RESULT_IMG = 69; //heh
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,9 @@ public class MainActivity extends Activity {
                             Log.i("Menu Item",menuItem.getItemId() + "");
                         }
                         else if(menuItem.getItemId() == R.id.ImageGallery){
+                            Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            //then start the intent
+                            startActivityForResult(i, RESULT_IMG);
                             Log.i("Menu Item",menuItem.getItemId() + "");
                         }
                         else if(menuItem.getItemId() == R.id.Upgrade){
@@ -96,4 +100,9 @@ public class MainActivity extends Activity {
                 });
 
     }
+
+
+
+
+
 }
