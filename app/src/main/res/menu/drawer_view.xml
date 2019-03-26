@@ -31,7 +31,7 @@
                     <item
                         android:id="@+id/ImageGallery"
                         android:icon="@drawable/ic_photolibrary"
-                        android:title="@string/navItem1" />
+                        android:title="@string/imglib" />
 
                     <item
                         android:id="@+id/Upgrade"

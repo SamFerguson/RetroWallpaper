@@ -3,7 +3,7 @@
     <string name="wallpaper">wallpaper</string>
     <string name="butt1">Set Wallpaper</string>
     <string name="navTitle">Retro Wallpaper</string>
-    <string name="navItem1">Manage Image Library</string>
+    <string name="imglib">Image Library</string>
     <string name="edit">Edit Wallpaper</string>
     <string name="other">More</string>
     <string name="bkg">Background</string>
