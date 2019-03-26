@@ -68,16 +68,19 @@ public class MainActivity extends Activity {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
-                        if(menuItem.getItemId() == R.id.nav_1){
+                        if(menuItem.getItemId() == R.id.Background){
                             Log.i("Menu Item",menuItem.getItemId() + "");
                         }
-                        else if(menuItem.getItemId() == R.id.nav_2){
+                        else if(menuItem.getItemId() == R.id.Foreground){
                             Log.i("Menu Item",menuItem.getItemId() + "");
                         }
-                        else if(menuItem.getItemId() == R.id.nav_3){
+                        else if(menuItem.getItemId() == R.id.ImageGallery){
                             Log.i("Menu Item",menuItem.getItemId() + "");
                         }
-                        else if(menuItem.getItemId() == R.id.nav_4){
+                        else if(menuItem.getItemId() == R.id.Upgrade){
+                            Log.i("Menu Item",menuItem.getItemId() + "");
+                        }
+                        else if(menuItem.getItemId() == R.id.About){
                             Log.i("Menu Item",menuItem.getItemId() + "");
                         }
                         menuItem.setChecked(true);

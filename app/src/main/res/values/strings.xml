@@ -4,7 +4,10 @@
     <string name="butt1">Set Wallpaper</string>
     <string name="navTitle">Retro Wallpaper</string>
     <string name="navItem1">Manage Image Library</string>
-    <string name="navItem2">Edit</string>
-    <string name="navItem3">Upgrade</string>
-    <string name="navItem4">About</string>
+    <string name="edit">Edit Wallpaper</string>
+    <string name="other">More</string>
+    <string name="bkg">Background</string>
+    <string name="foreground">Objects</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="abt">About</string>
 </resources>
