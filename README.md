@@ -2,7 +2,7 @@
 
 Dynamic Wallpaper App
 
-Authors:
+# Authors:
 
 Austin Purtell (purtellap)
 
