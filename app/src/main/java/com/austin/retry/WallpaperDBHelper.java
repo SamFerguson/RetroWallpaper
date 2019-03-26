@@ -53,6 +53,27 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
     }
 
 
+    public int getSize(int tableCode){
+
+        int count = -1;
+        if(tableCode == 0){
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor mCount= db.rawQuery("select count(*) from wallpaper", null);
+            mCount.moveToFirst();
+            count= mCount.getInt(0);
+            mCount.close();
+        }
+        if(tableCode == 1){
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor mCount= db.rawQuery("SELECT COUNT(*) FROM OBJECT;", null);
+            mCount.moveToFirst();
+            count= mCount.getInt(0);
+            mCount.close();
+        }
+        return count;
+    }
+
+
     public void insertObject(ObjectWrapper object){
         ContentValues mContent = new ContentValues();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -72,6 +93,7 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
     public Cursor test(){
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM WALLPAPER", null);
+
     }
 
 

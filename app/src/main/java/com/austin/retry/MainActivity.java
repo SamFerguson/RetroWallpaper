@@ -6,11 +6,13 @@ import android.app.WallpaperManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -111,8 +113,8 @@ public class MainActivity extends Activity {
 
     }
     @Override
-    protected void onActivityResult(int reqCode, int result, Intent data){
-        if(reqCode == RESULT_IMG) {
+    protected void onActivityResult(int reqCode, int result, Intent data) {
+        if (reqCode == RESULT_IMG) {
             super.onActivityResult(reqCode, result, data);
             ImageWrapper img = new ImageWrapper();
             if (result == RESULT_OK) {
@@ -141,10 +143,32 @@ public class MainActivity extends Activity {
                     img.setName(imageName);
                     img.setHelpME(getApplicationContext());
 
-                }catch (FileNotFoundException e) {
+                } catch (FileNotFoundException e) {
                 }
             }
         }
+    }
+
+
+
+
+
+
+    static class UploadAsync extends AsyncTask<ImageWrapper, Void, Byte[]> {
+
+        @Override
+        protected Byte[] doInBackground(ImageWrapper... backgroundImages) {
+
+            WallpaperDBHelper mHelper = new WallpaperDBHelper(backgroundImages[0].getHelpME());
+            mHelper.insertImage(backgroundImages[0]);
+            Cursor test = mHelper.test();
+            test.moveToFirst();
+            System.out.println("image id " + test.getString(0) + " image name " + test.getString(1)+
+                    test.getBlob(2));
+            return new Byte[0];
+
+        }
+    }
 
 
 
