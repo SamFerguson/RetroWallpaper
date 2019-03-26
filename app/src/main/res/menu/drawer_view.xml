@@ -1,21 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <group android:checkableBehavior="single">
+
         <item
-            android:id="@+id/nav_1"
-            android:icon="@drawable/ic_photolibrary"
-            android:title="@string/navItem1" />
+            android:id="@+id/Edit"
+            android:title="@string/edit" >
+
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/Background"
+                        android:icon="@drawable/ic_bkg"
+                        android:title="@string/bkg"
+                        />
+                    <item
+                        android:id="@+id/Foreground"
+                        android:icon="@drawable/ic_star"
+                        android:title="@string/foreground" />
+                </group>
+
+            </menu>
+        </item>
+
         <item
-            android:id="@+id/nav_2"
-            android:icon="@drawable/ic_settings"
-            android:title="@string/navItem2" />
-        <item
-            android:id="@+id/nav_3"
-            android:icon="@drawable/ic_unlock"
-            android:title="@string/navItem3" />
-        <item
-            android:id="@+id/nav_4"
-            android:icon="@drawable/ic_info"
-            android:title="@string/navItem4" />
+            android:id="@+id/Other"
+            android:title="@string/other" >
+
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/ImageGallery"
+                        android:icon="@drawable/ic_photolibrary"
+                        android:title="@string/imglib" />
+
+                    <item
+                        android:id="@+id/Upgrade"
+                        android:icon="@drawable/ic_unlock"
+                        android:title="@string/upgrade" />
+                    <item
+                        android:id="@+id/About"
+                        android:icon="@drawable/ic_info"
+                        android:title="@string/abt" />
+                </group>
+
+            </menu>
+        </item>
+
     </group>
 </menu>
