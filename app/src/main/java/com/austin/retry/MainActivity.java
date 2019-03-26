@@ -68,8 +68,9 @@ public class MainActivity extends Activity {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
-                        if(menuItem.getItemId() == R.id.Background){
-                            Log.i("Menu Item",menuItem.getItemId() + "");
+                        if(menuItem.getItemId() == R.id.Preview){
+                        }
+                        else if(menuItem.getItemId() == R.id.Background){
                         }
                         else if(menuItem.getItemId() == R.id.Foreground){
                             Log.i("Menu Item",menuItem.getItemId() + "");

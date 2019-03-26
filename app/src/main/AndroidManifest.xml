@@ -31,6 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" android:theme="@style/AppTheme.Launcher"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
