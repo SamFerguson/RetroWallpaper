@@ -73,6 +73,7 @@ public class MainActivity extends Activity {
             }
         });
 
+
         drawerLayout = findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -82,11 +83,22 @@ public class MainActivity extends Activity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
                         if(menuItem.getItemId() == R.id.Preview){
+                            Intent intent = new Intent(
+                                    WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
+                            intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+                                    new ComponentName(getApplicationContext(), WPService.class));
+                            startActivity(intent);
                         }
-                        else if(menuItem.getItemId() == R.id.Background){
+                        else if(menuItem.getItemId() == R.id.Background) {
+                            Intent i = new Intent(getApplicationContext(), ChooseImageActivity.class);
+                            i.putExtra("which", "background");
+                            startActivity(i);
+
                         }
                         else if(menuItem.getItemId() == R.id.Foreground){
-                            Log.i("Menu Item",menuItem.getItemId() + "");
+                            Intent i = new Intent(getApplicationContext(), ChooseImageActivity.class);
+                            i.putExtra("which", "object");
+                            startActivity(i);
                         }
                         else if(menuItem.getItemId() == R.id.ImageGallery){
                             Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -142,6 +154,8 @@ public class MainActivity extends Activity {
                     img.setBlob(temp);
                     img.setName(imageName);
                     img.setHelpME(getApplicationContext());
+                    new UploadAsync().execute(img);
+
 
                 } catch (FileNotFoundException e) {
                 }
@@ -161,7 +175,7 @@ public class MainActivity extends Activity {
 
             WallpaperDBHelper mHelper = new WallpaperDBHelper(backgroundImages[0].getHelpME());
             mHelper.insertImage(backgroundImages[0]);
-            Cursor test = mHelper.test();
+            Cursor test = mHelper.getImages();
             test.moveToFirst();
             System.out.println("image id " + test.getString(0) + " image name " + test.getString(1)+
                     test.getBlob(2));

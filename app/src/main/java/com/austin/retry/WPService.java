@@ -39,6 +39,7 @@ public class WPService extends WallpaperService {
 
         ForegroundObject foregroundObject = new ForegroundObject(BitmapFactory.decodeResource(getResources(),R.drawable.square));
 
+
         private final Runnable mUpdateDisplay = new Runnable()
         {
             @Override

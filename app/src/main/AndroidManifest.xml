@@ -32,6 +32,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.austin.retry.ChooseImageActivity">
+        </activity>
+
     </application>
 
 </manifest>

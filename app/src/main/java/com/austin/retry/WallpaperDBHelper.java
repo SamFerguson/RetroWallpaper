@@ -90,10 +90,9 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
     }
 
 
-    public Cursor test(){
+    public Cursor getImages(){
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM WALLPAPER", null);
-
+        return db.rawQuery("SELECT WALLPAPER.*, WALLPAPER.WALLPAPER_ID as _id from WALLPAPER", null);
     }
 
 
