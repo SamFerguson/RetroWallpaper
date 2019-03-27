@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +16,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -83,7 +85,18 @@ public class BackgroundActivity extends Activity {
         for(int i = 0; i < cursor.getCount(); i ++){
             byte[] bits = cursor.getBlob(2);
             Bitmap b = BitmapFactory.decodeByteArray(bits,0, bits.length);
-            bitmaps.add(b);
+            int ogHeight = b.getHeight();
+            int ogWidth= b.getWidth();
+            float aspectRatio = ogWidth/(float)ogHeight;
+
+            Display display = getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int width = size.x;
+            int displaywidth = width-100;
+            int displayheight = (int) (displaywidth/aspectRatio);
+            Bitmap bScaled = Bitmap.createScaledBitmap(b, displaywidth, displayheight, true);
+            bitmaps.add(bScaled);
             cursor.moveToNext();
         }
 
