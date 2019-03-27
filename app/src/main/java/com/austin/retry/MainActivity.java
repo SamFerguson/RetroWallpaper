@@ -13,10 +13,13 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +31,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
@@ -80,7 +84,7 @@ public class MainActivity extends Activity {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                         // set item as selected to persist highlight
                         if(menuItem.getItemId() == R.id.Preview){
                             Intent intent = new Intent(
@@ -90,10 +94,8 @@ public class MainActivity extends Activity {
                             startActivity(intent);
                         }
                         else if(menuItem.getItemId() == R.id.Background) {
-                            Intent i = new Intent(getApplicationContext(), ChooseImageActivity.class);
-                            i.putExtra("which", "background");
+                            Intent i = new Intent(getApplicationContext(), BackgroundActivity.class);
                             startActivity(i);
-
                         }
                         else if(menuItem.getItemId() == R.id.Foreground){
                             Intent i = new Intent(getApplicationContext(), ChooseImageActivity.class);
@@ -134,37 +136,41 @@ public class MainActivity extends Activity {
                     //get image data from the gallery
                     final Uri image = data.getData();
                     //something I don't understand
-                    final InputStream stream = getContentResolver().openInputStream(image);
-                    //the bitmap from the gallery
-                    final Bitmap input = BitmapFactory.decodeStream(stream);
-                    //these few lines are some code I found @
-                    //https://stackoverflow.com/questions/4989182/converting-java-bitmap-to-byte-array
-                    //to convert to byte array
-                    ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
-                    input.compress(Bitmap.CompressFormat.PNG, 100, stream2);
-                    byte[] temp = stream2.toByteArray();
+                    if (image != null) {
+                        final InputStream stream = getContentResolver().openInputStream(image);
+                        final Bitmap input = BitmapFactory.decodeStream(stream);
 
-                    //probably deprecated
-                    Drawable draw = new BitmapDrawable(getResources(), input);
-                    //get file name to pass to database
-                    String filename = image.getLastPathSegment();
-                    File f = new File(filename);
-                    String imageName = f.getName();
-                    //set the struct class variables to pass to db
-                    img.setBlob(temp);
-                    img.setName(imageName);
-                    img.setHelpME(getApplicationContext());
-                    new UploadAsync().execute(img);
+                        //the bitmap from the gallery
+
+                        //these few lines are some code I found @
+                        //https://stackoverflow.com/questions/4989182/converting-java-bitmap-to-byte-array
+                        //to convert to byte array
+                        ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
+                        input.compress(Bitmap.CompressFormat.PNG, 100, stream2);
+                        byte[] temp = stream2.toByteArray();
+
+                        //probably deprecated
+                        Drawable draw = new BitmapDrawable(getResources(), input);
+                        //get file name to pass to database
+                        String filename = image.getLastPathSegment();
+                        File f = new File(filename);
+                        String imageName = f.getName();
+
+                        //set the struct class variables to pass to db
+                        img.setBlob(temp);
+                        img.setName(imageName);
+                        img.setHelpME(getApplicationContext());
+                        new UploadAsync().execute(img);
+
+                    }
 
 
                 } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
             }
         }
     }
-
-
-
 
 
 
@@ -183,9 +189,6 @@ public class MainActivity extends Activity {
 
         }
     }
-
-
-
 
 
 }

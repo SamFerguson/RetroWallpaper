@@ -22,8 +22,6 @@ public class ChooseImageActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_list_view);
-        Bundle b = getIntent().getExtras();
-        String which = b.getString("which");
 
         mListView= (ListView)findViewById(R.id.image_list_view);
         CursorAdapter mCursorAdapter;

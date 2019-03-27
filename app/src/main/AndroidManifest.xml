@@ -34,6 +34,8 @@
 
         <activity android:name="com.austin.retry.ChooseImageActivity">
         </activity>
+        <activity android:name="com.austin.retry.BackgroundActivity">
+        </activity>
 
     </application>
 

@@ -25,7 +25,6 @@ public class ImageCursorAdapter extends CursorAdapter {
     }
 
     public void bindView(View view, Context context, Cursor cursor) {
-        cursor.moveToFirst();
         System.out.println("Hello world!");
         TextView mTextView = (TextView) view.findViewById(R.id.imagesID);
         System.out.println(mTextView);
@@ -44,8 +43,7 @@ public class ImageCursorAdapter extends CursorAdapter {
 
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
 
-        View v = LayoutInflater.from(context).inflate(R.layout.image_list_view,parent,false);
-        return v;
+        return LayoutInflater.from(context).inflate(R.layout.image_list_view,parent,false);
 
     }
 }

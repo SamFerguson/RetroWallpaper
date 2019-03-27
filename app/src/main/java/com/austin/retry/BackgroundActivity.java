@@ -1,0 +1,93 @@
+package com.austin.retry;
+
+import android.app.Activity;
+import android.app.WallpaperManager;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CursorAdapter;
+
+import java.util.ArrayList;
+
+public class BackgroundActivity extends Activity {
+
+    ArrayList<Bitmap> bitmaps = new ArrayList<>();
+    private DrawerLayout drawerLayout;
+    FloatingActionButton addImg;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        RecyclerView recyclerView;
+        RecyclerView.Adapter mAdapter;
+        RecyclerView.LayoutManager layoutManager;
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_bkg);
+        recyclerView = findViewById(R.id.recycler_view);
+
+        addImg = (FloatingActionButton) findViewById(R.id.fab);
+        addImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Do the same thing as IMage library does right now
+            }
+        });
+
+        // I'm not sure if this is how we should do it
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                        if(menuItem.getItemId() == R.id.Preview){
+                            Intent intent = new Intent(
+                                    WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
+                            intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+                                    new ComponentName(getApplicationContext(), WPService.class));
+                            startActivity(intent);
+                        }
+
+                        menuItem.setChecked(true);
+                        drawerLayout.closeDrawers();
+
+                        return true;
+                    }
+                });
+
+
+        // DISPLAYING THE LAYOUT
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        WallpaperDBHelper mHelper = new WallpaperDBHelper(getApplicationContext());
+        Cursor cursor = mHelper.getImages();
+        cursor.moveToFirst();
+
+        for(int i = 0; i < cursor.getCount(); i ++){
+            byte[] bits = cursor.getBlob(2);
+            Bitmap b = BitmapFactory.decodeByteArray(bits,0, bits.length);
+            bitmaps.add(b);
+            cursor.moveToNext();
+        }
+
+        mAdapter = new BackgroundAdapter(bitmaps);
+        recyclerView.setAdapter(mAdapter);
+    }
+}
