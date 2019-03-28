@@ -4,15 +4,18 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.WallpaperManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -30,8 +33,10 @@ import android.widget.Button;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends Activity {
 
@@ -46,6 +51,11 @@ public class MainActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        WallpaperDBHelper d = new WallpaperDBHelper(this);
+        //SQLiteDatabase db = d.getReadableDatabase();
+
+
+        System.out.println(this.fileList() == null);
 
         /*if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -160,6 +170,13 @@ public class MainActivity extends Activity {
                         img.setBlob(temp);
                         img.setName(imageName);
                         img.setHelpME(getApplicationContext());
+                        try {
+                            FileOutputStream out = new FileOutputStream(getApplicationContext().getFilesDir().getAbsolutePath()+"/"+imageName+".png");
+                            input.compress(Bitmap.CompressFormat.PNG, 100, out);
+                            out.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         new UploadAsync().execute(img);
 
                     }
@@ -184,11 +201,10 @@ public class MainActivity extends Activity {
             Cursor test = mHelper.getImages();
             test.moveToFirst();
             System.out.println("image id " + test.getString(0) + " image name " + test.getString(1)+
-                    test.getBlob(2));
+                    (test.getInt(3)==0) + test.getString(2));
             return new Byte[0];
 
         }
     }
-
 
 }

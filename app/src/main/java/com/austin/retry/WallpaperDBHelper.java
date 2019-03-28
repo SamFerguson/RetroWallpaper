@@ -23,7 +23,8 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
     private static final String IMAGE_DEFINITION = "CREATE TABLE WALLPAPER("
             + "WALLPAPER_ID INTEGER PRIMARY KEY AUTOINCREMENT,"
             + "WALLPAPER_NAME TEXT,"
-            + "IMAGE_DATA BLOB);";
+            + "IMAGE_DATA TEXT,"
+            + "IS_CHOSEN BOOLEAN);";
 
     private static final String OBJECT_DEFINTION = "CREATE TABLE OBJECT("
             + "OBJECT_ID INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -48,7 +49,7 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         ContentValues mContent = new ContentValues();
         SQLiteDatabase db = this.getWritableDatabase();
         mContent.put("WALLPAPER_NAME", image.getName());
-        mContent.put("IMAGE_DATA", image.getBlob());
+        mContent.put("IMAGE_DATA", image.getName());
         db.insert("WALLPAPER",null, mContent);
     }
 
@@ -80,6 +81,7 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         mContent.put("OBJECT_NAME", object.getObjectName());
         mContent.put("OBJECT_SETTINGS", object.getSettings());
         mContent.put("WALLPAPER_ID", object.getImage_Id());
+        mContent.put("IS_CHOSEN", false);
         db.insert("OBJECT", null, mContent);
     }
 
@@ -94,14 +96,6 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT WALLPAPER.*, WALLPAPER.WALLPAPER_ID as _id from WALLPAPER", null);
     }
-
-
-
-
-
-
-
-
 
     public WallpaperDBHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);

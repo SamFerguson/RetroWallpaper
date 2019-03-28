@@ -22,6 +22,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 
 public class BackgroundActivity extends Activity {
@@ -83,8 +85,18 @@ public class BackgroundActivity extends Activity {
         cursor.moveToFirst();
 
         for(int i = 0; i < cursor.getCount(); i ++){
-            byte[] bits = cursor.getBlob(2);
-            Bitmap b = BitmapFactory.decodeByteArray(bits,0, bits.length);
+
+            String fileName = cursor.getString(2);
+            System.out.println(getApplicationContext().getFilesDir().getAbsolutePath());
+            File f = new File(getApplicationContext().getFilesDir().getAbsolutePath(), fileName+".png");
+            //byte[] bits = cursor.getBlob(2);
+            Bitmap b = null;
+            try{
+                b = BitmapFactory.decodeStream(new FileInputStream(f));
+            }catch(Exception e){
+                System.out.println(e.toString());
+            }
+
             int ogHeight = b.getHeight();
             int ogWidth= b.getWidth();
             float aspectRatio = ogWidth/(float)ogHeight;
