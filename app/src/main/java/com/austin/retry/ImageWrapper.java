@@ -1,12 +1,22 @@
 package com.austin.retry;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 public class ImageWrapper {
 
     private byte[] blob;
     private String name;
     private Context helpME;
+    private Bitmap bitmap;
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
 
     public ImageWrapper(){
     }

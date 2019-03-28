@@ -6,6 +6,7 @@ import android.app.WallpaperManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +14,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -52,7 +54,20 @@ public class MainActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         WallpaperDBHelper d = new WallpaperDBHelper(this);
-        //SQLiteDatabase db = d.getReadableDatabase();
+
+        SharedPreferences firstTime = getSharedPreferences("default", 0);
+
+        if(firstTime.getBoolean("first", true)){
+
+            ImageWrapper img = new ImageWrapper();
+            final Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.steve_not_impressed);
+            img.setName("1");
+            img.setHelpME(getApplicationContext());
+            img.setBitmap(b);
+            new FileAsync(img).execute();
+            new UploadAsync().execute(img);
+            firstTime.edit().putBoolean("first", false).apply();
+        }
 
 
         System.out.println(this.fileList() == null);
@@ -206,9 +221,29 @@ public class MainActivity extends Activity {
             test2.moveToFirst();
             System.out.println("image id " + test.getString(0) + " image name " + test.getString(1)+
                     (test.getInt(3)==0) + test.getString(2));
-
+            test.close();
+            test2.close();
             return new Byte[0];
 
+        }
+    }
+
+    static class FileAsync extends AsyncTask<Void, Void, Void>{
+
+        private ImageWrapper iw;
+        public FileAsync(ImageWrapper imageWrapper){
+            iw = imageWrapper;
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                FileOutputStream out = new FileOutputStream(iw.getHelpME().getFilesDir().getAbsolutePath()+"/1.png");
+                iw.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
+                out.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
         }
     }
 
