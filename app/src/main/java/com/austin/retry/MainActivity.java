@@ -200,8 +200,13 @@ public class MainActivity extends Activity {
             mHelper.insertImage(backgroundImages[0]);
             Cursor test = mHelper.getImages();
             test.moveToFirst();
+            //System.out.println("image id " + test.getString(0) + " image name " + test.getString(1)+
+                    //(test.getInt(3)==0) + test.getString(2));
+            Cursor test2 = mHelper.getSelected();
+            test2.moveToFirst();
             System.out.println("image id " + test.getString(0) + " image name " + test.getString(1)+
                     (test.getInt(3)==0) + test.getString(2));
+
             return new Byte[0];
 
         }

@@ -3,6 +3,7 @@
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/img_view"
     android:paddingTop="@dimen/pad16"
     android:paddingBottom="@dimen/pad16"
     android:contentDescription="@string/bkg">

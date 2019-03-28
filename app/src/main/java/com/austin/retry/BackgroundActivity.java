@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class BackgroundActivity extends Activity {
 
-    ArrayList<Bitmap> bitmaps = new ArrayList<>();
+    ArrayList<RecyclerWrapper> wrappers = new ArrayList<>();
     private DrawerLayout drawerLayout;
     FloatingActionButton addImg;
 
@@ -85,10 +85,11 @@ public class BackgroundActivity extends Activity {
         cursor.moveToFirst();
 
         for(int i = 0; i < cursor.getCount(); i ++){
-
+            RecyclerWrapper w = new RecyclerWrapper();
             String fileName = cursor.getString(2);
             System.out.println(getApplicationContext().getFilesDir().getAbsolutePath());
             File f = new File(getApplicationContext().getFilesDir().getAbsolutePath(), fileName+".png");
+            w.setFileName(fileName);
             //byte[] bits = cursor.getBlob(2);
             Bitmap b = null;
             try{
@@ -108,11 +109,13 @@ public class BackgroundActivity extends Activity {
             int displaywidth = width-100;
             int displayheight = (int) (displaywidth/aspectRatio);
             Bitmap bScaled = Bitmap.createScaledBitmap(b, displaywidth, displayheight, true);
-            bitmaps.add(bScaled);
+            w.setBitmap(bScaled);
+            w.setContext(getApplicationContext());
+            wrappers.add(w);
             cursor.moveToNext();
         }
 
-        mAdapter = new BackgroundAdapter(bitmaps);
+        mAdapter = new BackgroundAdapter(wrappers);
         recyclerView.setAdapter(mAdapter);
     }
 }

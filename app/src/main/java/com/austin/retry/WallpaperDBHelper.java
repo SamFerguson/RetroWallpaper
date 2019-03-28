@@ -51,6 +51,7 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         mContent.put("WALLPAPER_NAME", image.getName());
         mContent.put("IMAGE_DATA", image.getName());
         db.insert("WALLPAPER",null, mContent);
+        db.close();
     }
 
 
@@ -91,10 +92,20 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         db.execSQL("UPDATE OBJECT SET OBJECT_NAME = "+ s+ " WHERE OBJECT_ID = "+object.getObjectId());
     }
 
+    public void setSelected(String fileName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE WALLPAPER SET IS_CHOSEN = FALSE");
+        db.execSQL("UPDATE WALLPAPER SET IS_CHOSEN = TRUE WHERE IMAGE_DATA = "+ fileName);
+    }
 
     public Cursor getImages(){
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT WALLPAPER.*, WALLPAPER.WALLPAPER_ID as _id from WALLPAPER", null);
+    }
+
+    public Cursor getSelected(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT WALLPAPER.*, WALLPAPER.WALLPAPER_ID AS _id FROM WALLPAPER WHERE IS_CHOSEN = 1",null);
     }
 
     public WallpaperDBHelper(Context context){
