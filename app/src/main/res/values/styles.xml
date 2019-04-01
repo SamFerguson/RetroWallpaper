@@ -13,4 +13,9 @@
         <item name="colorPrimaryDark">@color/backgroundCharcoal</item>
     </style>
 
+    <style name="fabStyle">
+        <!-- Customize your theme here. -->
+        <item name="android:background">@color/highlightAqua</item>
+    </style>
+
 </resources>

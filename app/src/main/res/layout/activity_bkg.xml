@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".BackgroundActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -26,7 +26,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:src="@drawable/ic_add"
-            android:layout_margin="16dp" />
+            style="@style/fabStyle"
+            android:tint="@color/highlightWhite"
+            app:backgroundTint="@color/highlightAqua"
+            android:layout_margin="@dimen/pad16" />
 
     </FrameLayout>
 

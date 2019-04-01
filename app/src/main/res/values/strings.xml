@@ -11,4 +11,10 @@
     <string name="foreground">Objects</string>
     <string name="upgrade">Upgrade</string>
     <string name="abt">About</string>
+
+    <string name="objName">Object 1</string>
+    <string name="objSize">Large</string>
+    <string name="objVelocity">Fast</string>
+    <string name="objAngle">45°</string>
+    <string name="objDesc4">Idk</string>
 </resources>

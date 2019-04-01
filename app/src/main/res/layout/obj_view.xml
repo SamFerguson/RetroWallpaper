@@ -1,20 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="match_parent"
+        android:id="@+id/objImgPreview"
+        android:layout_width="@dimen/sizeObjImgPreview"
+        android:layout_height="@dimen/sizeObjImgPreview"
+        android:contentDescription="@string/foreground"
+        app:layout_constraintEnd_toStartOf="@+id/objDesc1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/objName"
+        android:layout_width="@dimen/sizeObjImgPreview"
         android:layout_height="wrap_content"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:text="@string/objName"
+        android:textAlignment="center"
+        android:layout_marginTop="@dimen/pad16"
+        app:layout_constraintStart_toStartOf="@id/objImgPreview"
+        app:layout_constraintTop_toBottomOf="@id/objImgPreview" />
 
+    <TextView
+        android:id="@+id/objDesc1"
+        android:layout_width="@dimen/sizeObjDesc"
+        android:layout_height="wrap_content"
+        android:text="@string/objSize"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/objDesc2"
+        app:layout_constraintEnd_toStartOf="@+id/objDesc3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/objImgPreview"
+        app:layout_constraintTop_toTopOf="@id/objImgPreview" />
 
+    <TextView
+        android:id="@+id/objDesc2"
+        android:layout_width="@dimen/sizeObjDesc"
+        android:layout_height="wrap_content"
+        android:text="@string/objVelocity"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/objImgPreview"
+        app:layout_constraintEnd_toStartOf="@+id/objDesc4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/objImgPreview"
+        app:layout_constraintTop_toBottomOf="@id/objDesc1" />
+
+    <TextView
+        android:id="@+id/objDesc3"
+        android:layout_width="@dimen/sizeObjDesc"
+        android:layout_height="wrap_content"
+        android:text="@string/objAngle"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/objDesc4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/objDesc1"
+        app:layout_constraintTop_toTopOf="@id/objImgPreview" />
+
+    <TextView
+        android:id="@+id/objDesc4"
+        android:layout_width="@dimen/sizeObjDesc"
+        android:layout_height="wrap_content"
+        android:text="@string/objDesc4"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/objImgPreview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/objDesc2"
+        app:layout_constraintTop_toBottomOf="@id/objDesc3" />
 
 
 </android.support.constraint.ConstraintLayout>
+
+<!--
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:id="@+id/objImgPreview"
+        android:contentDescription="@string/foreground"
+        android:layout_width="@dimen/sizeObjImgPreview"
+        android:layout_height="@dimen/sizeObjImgPreview"
+        android:layout_margin="@dimen/pad16"
+        />
+
+    <TextView
+        android:id="@+id/objName"
+        android:layout_width="@dimen/sizeObjImgPreview"
+        android:layout_height="wrap_content"
+        android:text="@string/objName"
+        android:layout_below="@id/objImgPreview"
+        android:layout_marginStart="@dimen/pad16"
+        android:layout_marginBottom="@dimen/pad16"
+        />
+
+    <TextView
+        android:id="@+id/objDesc1"
+        android:textSize="20sp"
+        android:layout_width="@dimen/sizeObjDesc"
+        android:layout_height="wrap_content"
+        android:text="@string/objSize"
+        android:layout_toEndOf="@id/objImgPreview"
+        android:layout_margin="@dimen/pad16"
+        />
+
+    <TextView
+        android:id="@+id/objDesc2"
+        android:layout_width="@dimen/sizeObjDesc"
+        android:layout_height="wrap_content"
+        android:text="@string/objVelocity"
+        android:layout_toEndOf="@id/objImgPreview"
+        android:layout_below="@id/objDesc1"
+        android:layout_margin="@dimen/pad16"
+        />
+
+    <TextView
+        android:id="@+id/objDesc3"
+        android:layout_width="@dimen/sizeObjDesc"
+        android:layout_height="wrap_content"
+        android:text="@string/objAngle"
+        android:layout_toEndOf="@id/objDesc1"
+        android:layout_margin="@dimen/pad16"
+        />
+
+    <TextView
+        android:id="@+id/objDesc4"
+        android:layout_width="@dimen/sizeObjDesc"
+        android:layout_height="wrap_content"
+        android:text="@string/objDesc4"
+        android:layout_toEndOf="@id/objDesc2"
+        android:layout_below="@id/objDesc1"
+        android:layout_margin="@dimen/pad16"
+        />
+
+
+</RelativeLayout>-->
