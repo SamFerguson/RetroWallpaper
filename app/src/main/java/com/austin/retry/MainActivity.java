@@ -123,8 +123,7 @@ public class MainActivity extends Activity {
                             startActivity(i);
                         }
                         else if(menuItem.getItemId() == R.id.Foreground){
-                            Intent i = new Intent(getApplicationContext(), ChooseImageActivity.class);
-                            i.putExtra("which", "object");
+                            Intent i = new Intent(getApplicationContext(), ForegroundActivity.class);
                             startActivity(i);
                         }
                         else if(menuItem.getItemId() == R.id.ImageGallery){

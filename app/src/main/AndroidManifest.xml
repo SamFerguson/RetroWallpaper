@@ -36,6 +36,8 @@
         </activity>
         <activity android:name="com.austin.retry.BackgroundActivity">
         </activity>
+        <activity android:name="com.austin.retry.ForegroundActivity">
+        </activity>
 
     </application>
 

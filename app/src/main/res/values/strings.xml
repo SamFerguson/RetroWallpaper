@@ -13,8 +13,8 @@
     <string name="abt">About</string>
 
     <string name="objName">Object 1</string>
-    <string name="objSize">Large</string>
-    <string name="objVelocity">Fast</string>
-    <string name="objAngle">45°</string>
-    <string name="objDesc4">Idk</string>
+    <string name="objSize">Size:\n</string>
+    <string name="objVelocity">Speed:\n</string>
+    <string name="objAngle">Angle:\n</string>
+    <string name="objDesc4">Shape:\n</string>
 </resources>

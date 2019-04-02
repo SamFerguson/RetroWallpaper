@@ -2,7 +2,9 @@
 <resources>
     <dimen name="zero">0dp</dimen>
     <dimen name="pad16">16dp</dimen>
+    <dimen name="pad32">32dp</dimen>
     <dimen name="sizeObjImgPreview">100dp</dimen>
     <dimen name="sizeObjDesc">100dp</dimen>
     <dimen name="heightNav">192dp</dimen>
+    <dimen name="objTextSize">16sp</dimen>
 </resources>
