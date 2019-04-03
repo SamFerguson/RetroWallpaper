@@ -123,7 +123,7 @@ public class MainActivity extends Activity {
                             startActivity(i);
                         }
                         else if(menuItem.getItemId() == R.id.Foreground){
-                            Intent i = new Intent(getApplicationContext(), ChooseImageActivity.class);
+                            Intent i = new Intent(getApplicationContext(), ObjectActivity.class);
                             i.putExtra("which", "object");
                             startActivity(i);
                         }
@@ -134,6 +134,8 @@ public class MainActivity extends Activity {
                             Log.i("Menu Item",menuItem.getItemId() + "");
                         }
                         else if(menuItem.getItemId() == R.id.Upgrade){
+                            WallpaperDBHelper helper = new WallpaperDBHelper(getApplicationContext());
+                            helper.test();
                             Log.i("Menu Item",menuItem.getItemId() + "");
                         }
                         else if(menuItem.getItemId() == R.id.About){

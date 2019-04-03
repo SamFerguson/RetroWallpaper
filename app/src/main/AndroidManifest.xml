@@ -32,6 +32,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.austin.retry.ObjectActivity">
+        </activity>
         <activity android:name="com.austin.retry.ChooseImageActivity">
         </activity>
         <activity android:name="com.austin.retry.BackgroundActivity">

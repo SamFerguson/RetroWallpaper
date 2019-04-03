@@ -8,6 +8,40 @@ public class RecyclerWrapper {
     private Bitmap bitmap;
     private String fileName;
     private Context context;
+    private int id;
+    private String objectName;
+    private String settings;
+    private String idk;
+
+    //settings in the form of "size,angle,speed"
+    public String getSettings() {
+        return settings;
+    }
+
+    public void setSettings(String settings) {
+        this.settings = settings;
+    }
+
+    public String getObjectName() {
+        return objectName;
+    }
+
+    public void setObjectName(String objectName) {
+        this.objectName = objectName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+
+
+
 
     public Context getContext() {
         return context;

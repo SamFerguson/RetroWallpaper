@@ -37,6 +37,7 @@ public class WPService extends WallpaperService {
         private boolean mVisible = false;
         private final Handler mHandler = new Handler();
 
+
         ForegroundObject foregroundObject = new ForegroundObject(BitmapFactory.decodeResource(getResources(),R.drawable.square));
 
 
