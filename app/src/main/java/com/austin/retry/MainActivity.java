@@ -153,6 +153,7 @@ public class MainActivity extends Activity {
                 });
 
     }
+    //sup fam
     @Override
     protected void onActivityResult(int reqCode, int result, Intent data) {
         if (reqCode == RESULT_IMG) {
