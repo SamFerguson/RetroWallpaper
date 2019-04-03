@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.strictmode.SqliteObjectLeakedViolation;
 
 /**
  * <b>Sam Ferguson</b>, Austin Purtell, Michael Walling
@@ -103,9 +104,26 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT WALLPAPER.*, WALLPAPER.WALLPAPER_ID as _id from WALLPAPER", null);
     }
 
+    public Cursor getObject(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        //this'll return the object id, the name, settings, and the filepath where the object has a connected wallpaper
+        return db.rawQuery("SELECT OBJECT.OBJECT_ID as _id, OBJECT.OBJECT_NAME, OBJECT.OBJECT_SETTINGS, WALLPAPER.IMAGE_DATA " +
+                "from OBJECT, WALLPAPER where WALLPAPER.WALLPAPER_ID = OBJECT.OBJECT_ID",null);
+    }
+
     public Cursor getSelected(){
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT WALLPAPER.*, WALLPAPER.WALLPAPER_ID AS _id FROM WALLPAPER WHERE IS_CHOSEN = 1",null);
+    }
+
+    public void test(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("INSERT INTO OBJECT(OBJECT_NAME, OBJECT_SETTINGS, WALLPAPER_ID)" +
+                "values(\"HOHOHOHOH\", \"large,very fast,55°\", 1), " +
+                "(\"weiner\", \"small,medium,90°\", 2)," +
+                "(\"skibbity boo\", \"huge,slow,305°\", 3)");
+        db.close();
     }
 
     public WallpaperDBHelper(Context context){

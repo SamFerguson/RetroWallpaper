@@ -124,6 +124,7 @@ public class MainActivity extends Activity {
                         }
                         else if(menuItem.getItemId() == R.id.Foreground){
                             Intent i = new Intent(getApplicationContext(), ForegroundActivity.class);
+                            i.putExtra("which", "object");
                             startActivity(i);
                         }
                         else if(menuItem.getItemId() == R.id.ImageGallery){
@@ -133,6 +134,8 @@ public class MainActivity extends Activity {
                             Log.i("Menu Item",menuItem.getItemId() + "");
                         }
                         else if(menuItem.getItemId() == R.id.Upgrade){
+                            WallpaperDBHelper helper = new WallpaperDBHelper(getApplicationContext());
+                            helper.test();
                             Log.i("Menu Item",menuItem.getItemId() + "");
                         }
                         else if(menuItem.getItemId() == R.id.About){
@@ -150,6 +153,7 @@ public class MainActivity extends Activity {
                 });
 
     }
+    //sup fam
     @Override
     protected void onActivityResult(int reqCode, int result, Intent data) {
         if (reqCode == RESULT_IMG) {
