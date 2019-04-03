@@ -13,7 +13,7 @@
         android:padding="@dimen/pad16"
         >
 
-        <!-- Title/Logo
+        <!-- Title/Logo -->
         <TextView
             android:id="@+id/aboutTitle"
             android:layout_width="match_parent"
@@ -24,9 +24,8 @@
             android:textStyle="bold"
             android:textColor="@color/highlightWhite"
             android:paddingBottom="@dimen/pad16"/>
-            -->
 
-        <!-- Description
+        <!-- Description -->
         <TextView
             android:id="@+id/aboutDesc"
             android:layout_width="match_parent"
@@ -34,7 +33,6 @@
             android:text="@string/abtDesc"
             android:textSize="@dimen/descSize"
             android:textColor="@color/highlightWhite"/>
-             -->
     </LinearLayout>
 
 </RelativeLayout>

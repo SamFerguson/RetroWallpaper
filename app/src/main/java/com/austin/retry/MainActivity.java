@@ -123,7 +123,7 @@ public class MainActivity extends Activity {
                             startActivity(i);
                         }
                         else if(menuItem.getItemId() == R.id.Foreground){
-                            Intent i = new Intent(getApplicationContext(), ForegroundActivity.class);
+                            Intent i = new Intent(getApplicationContext(), ObjectActivity.class);
                             i.putExtra("which", "object");
                             startActivity(i);
                         }

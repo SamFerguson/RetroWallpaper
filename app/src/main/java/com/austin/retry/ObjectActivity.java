@@ -105,7 +105,7 @@ public class ObjectActivity extends AppCompatActivity {
             Point size = new Point();
             display.getSize(size);
             int width = size.x;
-            int displaywidth = width-100;
+            int displaywidth = width-200;
             int displayheight = (int) (displaywidth/aspectRatio);
             Bitmap bScaled = Bitmap.createScaledBitmap(b, displaywidth, displayheight, true);
             //set image bitmap
