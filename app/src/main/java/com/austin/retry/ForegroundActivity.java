@@ -1,4 +1,4 @@
-/*package com.austin.retry;
+package com.austin.retry;
 
 import android.app.Activity;
 import android.app.WallpaperManager;
@@ -69,4 +69,3 @@ public class ForegroundActivity extends Activity {
         recyclerView.setAdapter(mAdapter);
     }
 }
-*/

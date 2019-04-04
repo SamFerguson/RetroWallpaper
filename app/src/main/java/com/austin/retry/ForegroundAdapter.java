@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-/**
+
 public class ForegroundAdapter extends RecyclerView.Adapter<ForegroundAdapter.MyViewHolder> {
 
     private ArrayList<ForegroundObject> objects = new ArrayList<>();
@@ -108,4 +108,4 @@ public class ForegroundAdapter extends RecyclerView.Adapter<ForegroundAdapter.My
 
 
 }
-*/
+

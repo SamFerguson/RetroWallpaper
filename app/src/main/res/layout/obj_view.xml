@@ -2,7 +2,9 @@
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/obj_view"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -10,7 +12,7 @@
         android:layout_width="@dimen/sizeObjImgPreview"
         android:layout_height="@dimen/sizeObjImgPreview"
         android:contentDescription="@string/foreground"
-        app:layout_constraintEnd_toStartOf="@+id/objDesc1"
+        app:layout_constraintEnd_toStartOf="@+id/objSize"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,19 +29,16 @@
         app:layout_constraintTop_toBottomOf="@id/objImgPreview" />
 
     <TextView
-        android:id="@+id/objDesc1"
+        android:id="@+id/objSize"
         android:layout_width="@dimen/sizeObjDesc"
         android:layout_height="wrap_content"
         android:text="@string/objSize"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/objDesc2"
-        app:layout_constraintEnd_toStartOf="@+id/objDesc3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/objImgPreview"
-        app:layout_constraintTop_toTopOf="@id/objImgPreview" />
+        tools:layout_editor_absoluteX="156dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <TextView
-        android:id="@+id/objDesc2"
+        android:id="@+id/objSpeed"
         android:layout_width="@dimen/sizeObjDesc"
         android:layout_height="wrap_content"
         android:text="@string/objVelocity"
@@ -48,10 +47,10 @@
         app:layout_constraintEnd_toStartOf="@+id/objDesc4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/objImgPreview"
-        app:layout_constraintTop_toBottomOf="@id/objDesc1" />
+        app:layout_constraintTop_toBottomOf="@id/objSize" />
 
     <TextView
-        android:id="@+id/objDesc3"
+        android:id="@+id/objAngle"
         android:layout_width="@dimen/sizeObjDesc"
         android:layout_height="wrap_content"
         android:text="@string/objAngle"
@@ -59,7 +58,7 @@
         app:layout_constraintBottom_toTopOf="@id/objDesc4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/objDesc1"
+        app:layout_constraintStart_toEndOf="@+id/objSize"
         app:layout_constraintTop_toTopOf="@id/objImgPreview" />
 
     <TextView
@@ -71,8 +70,8 @@
         app:layout_constraintBottom_toBottomOf="@id/objImgPreview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/objDesc2"
-        app:layout_constraintTop_toBottomOf="@id/objDesc3" />
+        app:layout_constraintStart_toEndOf="@+id/objSpeed"
+        app:layout_constraintTop_toBottomOf="@id/objAngle" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -37,8 +37,12 @@ public class WPService extends WallpaperService {
         private boolean mVisible = false;
         private final Handler mHandler = new Handler();
 
-
+        /*
+         * This is where we would get all of the objects from the objects table
+         * where they are marked with selected.
+         */
         ForegroundObject foregroundObject = new ForegroundObject(BitmapFactory.decodeResource(getResources(),R.drawable.square));
+        /*
 
 
         private final Runnable mUpdateDisplay = new Runnable()
