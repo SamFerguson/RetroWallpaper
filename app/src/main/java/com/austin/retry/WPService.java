@@ -1,17 +1,24 @@
 package com.austin.retry;
 
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.Display;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
+
+import java.io.File;
+import java.io.FileInputStream;
 
 
 public class WPService extends WallpaperService {
@@ -31,6 +38,7 @@ public class WPService extends WallpaperService {
 
 
 
+
     //our custom wallpaper
     public WPService() {
         super();
@@ -38,6 +46,7 @@ public class WPService extends WallpaperService {
 
     @Override
     public Engine onCreateEngine() {
+        System.out.println("hello");
         return new WPEngine();
     }
 
@@ -46,14 +55,35 @@ public class WPService extends WallpaperService {
         private boolean mVisible = false;
         private final Handler mHandler = new Handler();
         private Paint paint = new Paint();
+        WallpaperDBHelper hello = new WallpaperDBHelper(getApplicationContext());
+        Bitmap bgimage;
+        ForegroundObject foregroundObject = new ForegroundObject(BitmapFactory.decodeResource(getResources(),R.drawable.square));
 
-
+        public WPEngine(){
+            //get the selected background
+            Cursor background = hello.getSelected();
+            background.moveToFirst();
+            //get the file name and load the file into the bitmap
+            File file;
+            try {
+                String fileName = background.getString(2);
+                file = new File(getApplicationContext().getFilesDir().getAbsolutePath(), fileName + ".png");
+            }catch(CursorIndexOutOfBoundsException e){
+                file = new File(getApplicationContext().getFilesDir().getAbsolutePath(), "1.png");
+            }
+            try{
+                bgimage = BitmapFactory.decodeStream(new FileInputStream(file));
+            }catch(Exception e){
+                System.out.println(e.toString());
+            }
+        }
         /*
          * This is where we would get all of the objects from the objects table
          * where they are marked with selected.
          */
-        ForegroundObject foregroundObject = new ForegroundObject(BitmapFactory.decodeResource(getResources(),R.drawable.square));
-        ForegroundObject foregroundObject1 = new ForegroundObject(BitmapFactory.decodeResource(getResources(),R.drawable.steve_not_impressed));
+
+
+
 
 
         ImageWrapper iw = new ImageWrapper();
@@ -71,10 +101,11 @@ public class WPService extends WallpaperService {
             }
         };
 
-        @Override
-        public void onVisibilityChanged(boolean visible) {
-            mVisible = visible;
-            if (visible) {
+                @Override
+                public void onVisibilityChanged(boolean visible) {
+
+                    mVisible = visible;
+                    if (visible) {
                 draw();
             } else {
                 mHandler.removeCallbacks(mUpdateDisplay);
@@ -83,35 +114,12 @@ public class WPService extends WallpaperService {
 
         @Override
         public void onSurfaceCreated(SurfaceHolder holder){
-
-
-            Canvas c = null;
-            Bitmap b = foregroundObject1.getImage();
-            b = b.copy(b.getConfig(),true);
-
-            int height= Resources.getSystem().getDisplayMetrics().heightPixels;
-            int width = Resources.getSystem().getDisplayMetrics().widthPixels;
-            Bitmap bScaled = Bitmap.createScaledBitmap(b, width ,height, true);
-            Bitmap resizedBitmap = Bitmap.createBitmap(b, 0, 0, 380, 760);
-            try {
-                c.drawColor(0xaa111111); // 0x AA(alpha) RR GG BB (note: lowering alpha will leave residual images)
-                c.drawBitmap(bScaled, 0, 0, paint);
-            }catch (NullPointerException e){
-            }
-            finally {
-                //in here you post your paint to the canvas
-                if (c != null)
-                    holder.unlockCanvasAndPost(c);
-            }
-            mHandler.removeCallbacks(mUpdateDisplay);
-            if (mVisible) {
-                mHandler.postDelayed(mUpdateDisplay, 0);
-            }
+            System.out.println("hello2");
         }
 
         @Override
         public void onSurfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            System.out.println("here I am");
+            System.out.println("hello3");
             Surface AA = holder.getSurface();
             draw();
         }
@@ -136,16 +144,14 @@ public class WPService extends WallpaperService {
         }
 
         private void draw() {
-
             SurfaceHolder holder = getSurfaceHolder();
             Canvas c = null;
-            Bitmap b = foregroundObject1.getImage();
+            Bitmap b = bgimage;
             b = b.copy(b.getConfig(),true);
 
             int height= Resources.getSystem().getDisplayMetrics().heightPixels;
             int width = Resources.getSystem().getDisplayMetrics().widthPixels;
             Bitmap bScaled = Bitmap.createScaledBitmap(b, width ,height, true);
-            Bitmap resizedBitmap = Bitmap.createBitmap(b, 0, 0, 380, 760);
 
             try {
                 //this is where you draw objects to canvas

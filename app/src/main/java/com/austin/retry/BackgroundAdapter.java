@@ -65,6 +65,8 @@ public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.My
             @Override
             public void onClick(View v) {
                 System.out.println("you clicked: " + b.toString() + "      " + filename);
+                SetCheckedAsyncTask setChecked = new SetCheckedAsyncTask(wrapper);
+                setChecked.execute();
             }
         });
 

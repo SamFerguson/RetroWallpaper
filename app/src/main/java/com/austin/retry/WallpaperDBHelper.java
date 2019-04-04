@@ -31,7 +31,8 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
             + "OBJECT_ID INTEGER PRIMARY KEY AUTOINCREMENT,"
             + "OBJECT_NAME TEXT,"
             + "OBJECT_SETTINGS TEXT,"
-            + "WALLPAPER_ID INTEGER);";
+            + "WALLPAPER_ID INTEGER,"
+            + "IS_CHOSEN BOOLEAN);";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -95,8 +96,8 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
 
     public void setSelected(String fileName){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE WALLPAPER SET IS_CHOSEN = FALSE");
-        db.execSQL("UPDATE WALLPAPER SET IS_CHOSEN = TRUE WHERE IMAGE_DATA = "+ fileName);
+        db.execSQL("UPDATE WALLPAPER SET IS_CHOSEN = 0");
+        db.execSQL("UPDATE WALLPAPER SET IS_CHOSEN = 1 WHERE IMAGE_DATA = "+ fileName);
     }
 
     public Cursor getImages(){

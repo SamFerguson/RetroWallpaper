@@ -196,10 +196,7 @@ public class MainActivity extends Activity {
                             e.printStackTrace();
                         }
                         new UploadAsync().execute(img);
-
                     }
-
-
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }

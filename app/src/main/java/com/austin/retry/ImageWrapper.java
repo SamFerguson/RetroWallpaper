@@ -10,6 +10,9 @@ public class ImageWrapper {
     private Context helpME;
     private Bitmap bitmap;
 
+    public ImageWrapper(Bitmap b){
+
+    }
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
