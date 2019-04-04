@@ -24,6 +24,8 @@ public class ImageWrapper {
         blob = a;
         name = b;
     }
+
+
     public void setBlob(byte[] b){
         blob = b;
     }

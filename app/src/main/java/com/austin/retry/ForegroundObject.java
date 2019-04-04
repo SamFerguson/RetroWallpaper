@@ -58,6 +58,12 @@ class ForegroundObject {
         }
     }
 
+    public void scaleBitmap(){
+
+
+
+    }
+
     public Bitmap getImage() {
         return image;
     }
