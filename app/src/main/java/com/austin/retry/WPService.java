@@ -19,6 +19,7 @@ import android.view.WindowManager;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 
 
 public class WPService extends WallpaperService {
@@ -57,11 +58,30 @@ public class WPService extends WallpaperService {
         private Paint paint = new Paint();
         WallpaperDBHelper hello = new WallpaperDBHelper(getApplicationContext());
         Bitmap bgimage;
+        //make an array of foreground objects that are chosen
         ForegroundObject foregroundObject = new ForegroundObject(BitmapFactory.decodeResource(getResources(),R.drawable.square));
+        ArrayList<RecyclerWrapper> tempObjects = new ArrayList<>();
+        ArrayList<ForegroundObject> foregroundObjects = new ArrayList<>();
 
         public WPEngine(){
             //get the selected background
             Cursor background = hello.getSelected();
+            Cursor foreground = hello.getObjects();
+            foreground.moveToFirst();
+            //cursor returns objid, name, settings, wallpaperid
+            System.out.println("number of things in the foreground array " + foreground.getCount());
+            while(!foreground.isAfterLast()){
+                tempObjects.add(new RecyclerWrapper(foreground.getString(0), foreground.getString(1)));
+                foreground.moveToNext();
+            }
+            //for every wrapper from the database, parse and make the backgroundimages
+            for(RecyclerWrapper w: tempObjects){
+                String[] temp = w.getSettings().split(",");
+                // make a foregroundObject with the settings from each wrapper return
+                String fileName = "data/data/com.austin.retry/files/"+w.getFileName()+".png";
+                foregroundObjects.add(new ForegroundObject(BitmapFactory.decodeFile(fileName), temp[0], temp[1], temp[2]));
+            }
+            //FINALLY ALL OF THE FOREGROUND OBEJECTS ARE IN THE WALLPAPER ENGINE AND CAN BE DRAWN HOW THEY WANNA BE DRAWN
             background.moveToFirst();
             //get the file name and load the file into the bitmap
             File file;
@@ -81,10 +101,6 @@ public class WPService extends WallpaperService {
          * This is where we would get all of the objects from the objects table
          * where they are marked with selected.
          */
-
-
-
-
 
         ImageWrapper iw = new ImageWrapper();
         /*
@@ -140,7 +156,9 @@ public class WPService extends WallpaperService {
 
         // Updates position of objects
         void update() {
-            foregroundObject.update();
+            for(ForegroundObject fg: foregroundObjects){
+                fg.update();
+            }
         }
 
         private void draw() {
@@ -161,7 +179,9 @@ public class WPService extends WallpaperService {
                     c.drawColor(0xaa111111); // 0x AA(alpha) RR GG BB (note: lowering alpha will leave residual images)
                     c.drawBitmap(bScaled,0,0,paint);
                     update();
-                    foregroundObject.draw(c);
+                    for(ForegroundObject fg: foregroundObjects) {
+                        fg.draw(c);
+                    }
                 }
             } finally {
                 //in here you post your paint to the canvas

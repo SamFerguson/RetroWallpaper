@@ -111,6 +111,13 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT OBJECT.OBJECT_ID as _id, OBJECT.OBJECT_NAME, OBJECT.OBJECT_SETTINGS, WALLPAPER.IMAGE_DATA " +
                 "from OBJECT, WALLPAPER where WALLPAPER.WALLPAPER_ID = OBJECT.OBJECT_ID",null);
     }
+    public Cursor getObjects(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        //select * from objects where is chosen
+        //select objects.settings, wallpaper.settings, from (select * from wallpaper
+        return db.rawQuery("SELECT OBJECT.OBJECT_SETTINGS, WALLPAPER.IMAGE_DATA"+
+                " from OBJECT, WALLPAPER where WALLPAPER.WALLPAPER_ID = OBJECT.OBJECT_ID AND OBJECT.IS_CHOSEN = 1",null);
+    }
 
     public Cursor getSelected(){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -120,10 +127,10 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
     public void test(){
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("INSERT INTO OBJECT(OBJECT_NAME, OBJECT_SETTINGS, WALLPAPER_ID)" +
-                "values(\"HOHOHOHOH\", \"large,very fast,55°\", 1), " +
-                "(\"weiner\", \"small,medium,90°\", 2)," +
-                "(\"skibbity boo\", \"huge,slow,305°\", 3)");
+        db.execSQL("INSERT INTO OBJECT(OBJECT_NAME, OBJECT_SETTINGS, WALLPAPER_ID, IS_CHOSEN)" +
+                "values(\"HOHOHOHOH\", \"large,100,55\", 1,1), " +
+                "(\"weiner\", \"small,50,90\", 2,1)," +
+                "(\"skibbity boo\", \"huge,20,305\", 3,1)");
         db.close();
     }
 

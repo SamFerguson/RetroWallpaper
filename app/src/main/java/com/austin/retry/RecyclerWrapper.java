@@ -13,6 +13,13 @@ public class RecyclerWrapper {
     private String settings;
     private String idk;
 
+    public RecyclerWrapper(){}
+
+    public RecyclerWrapper(String s, String file){
+        settings = s;
+        fileName = file;
+    }
+
     //settings in the form of "size,angle,speed"
     public String getSettings() {
         return settings;

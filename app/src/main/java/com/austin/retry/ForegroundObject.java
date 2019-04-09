@@ -26,6 +26,16 @@ class ForegroundObject {
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
+    ForegroundObject(Bitmap bmp, String size, String angle, String speed){
+        image = bmp;
+        //TODO: make it so the size is sent in as string with cases to assign size as something other than 200
+        this.size = 200;
+        this.angle = Integer.parseInt(angle);
+        this.speed = Float.parseFloat(speed);
+        this.x = screenWidth/2;
+        this.y = screenHeight/2;
+    }
+
     ForegroundObject(Bitmap bmp) {
         image = bmp;
         this.x = screenWidth/2;
