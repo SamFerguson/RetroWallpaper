@@ -79,7 +79,9 @@ public class WPService extends WallpaperService {
                 String[] temp = w.getSettings().split(",");
                 // make a foregroundObject with the settings from each wrapper return
                 String fileName = "data/data/com.austin.retry/files/"+w.getFileName()+".png";
-                foregroundObjects.add(new ForegroundObject(BitmapFactory.decodeFile(fileName), temp[0], temp[1], temp[2]));
+                Bitmap tempy = BitmapFactory.decodeFile(fileName);
+                tempy = Bitmap.createScaledBitmap(tempy, 100,100, true);
+                foregroundObjects.add(new ForegroundObject(tempy    , temp[0], temp[1], temp[2]));
             }
             //FINALLY ALL OF THE FOREGROUND OBEJECTS ARE IN THE WALLPAPER ENGINE AND CAN BE DRAWN HOW THEY WANNA BE DRAWN
             background.moveToFirst();

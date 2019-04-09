@@ -128,9 +128,9 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("INSERT INTO OBJECT(OBJECT_NAME, OBJECT_SETTINGS, WALLPAPER_ID, IS_CHOSEN)" +
-                "values(\"HOHOHOHOH\", \"large,100,55\", 1,1), " +
-                "(\"weiner\", \"small,50,90\", 2,1)," +
-                "(\"skibbity boo\", \"huge,20,305\", 3,1)");
+                "values(\"HOHOHOHOH\", \"large,100,45\", 1,1), " +
+                "(\"weiner\", \"small,50,60\", 2,1)," +
+                "(\"skibbity boo\", \"huge,20,315\", 3,1)");
         db.close();
     }
 
