@@ -10,7 +10,12 @@
     <string name="bkg">Background</string>
     <string name="foreground">Objects</string>
     <string name="upgrade">Upgrade</string>
+        <string name="upgradeTitle">UPGRADE</string>
+        <string name="upgradeDesc">Upgrade to get better stuff.</string>
+        <string name="upgradeButton">UPGRADE</string>
     <string name="abt">About</string>
+        <string name="abtTitle">About</string>
+        <string name="abtDesc">RetroWallpaper.com</string>
 
     <string name="objName">Object 1</string>
     <string name="objSize">Large</string>

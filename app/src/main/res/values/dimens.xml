@@ -5,4 +5,7 @@
     <dimen name="sizeObjImgPreview">100dp</dimen>
     <dimen name="sizeObjDesc">100dp</dimen>
     <dimen name="heightNav">192dp</dimen>
+
+    <dimen name="titleSize">50sp</dimen>
+    <dimen name="descSize">25sp</dimen>
 </resources>

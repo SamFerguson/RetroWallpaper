@@ -13,7 +13,7 @@
         android:padding="@dimen/pad16"
         >
 
-        <!-- Title/Logo
+        <!-- Title/Logo -->
         <TextView
             android:id="@+id/upgradeTitle"
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
 
              -->
 
-        <!-- Description
+        <!-- Description -->
         <TextView
             android:id="@+id/upgradeDesc"
             android:layout_width="match_parent"
@@ -38,14 +38,14 @@
             android:paddingBottom="@dimen/pad16"/>
             -->
 
-        <!-- Upgrade Button
+        <!-- Upgrade Button -->
         <Button
             android:id="@+id/upgradeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/upgradeButton"
             android:textSize="@dimen/titleSize"/>
--->
+
     </LinearLayout>
 
 </RelativeLayout>
