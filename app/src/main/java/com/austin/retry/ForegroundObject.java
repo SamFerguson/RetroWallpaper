@@ -4,7 +4,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-class ForegroundObject {
+public class ForegroundObject {
 
     // editable attributes
     private Bitmap image;
@@ -26,7 +26,7 @@ class ForegroundObject {
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
-    ForegroundObject(Bitmap bmp, String size, String angle, String speed){
+    public ForegroundObject(Bitmap bmp, String size, String angle, String speed){
         image = bmp;
         //TODO: make it so the size is sent in as string with cases to assign size as something other than 200
         this.size = 200;
@@ -36,7 +36,7 @@ class ForegroundObject {
         this.y = screenHeight/2;
     }
 
-    ForegroundObject(Bitmap bmp) {
+    public ForegroundObject(Bitmap bmp) {
         image = bmp;
         this.x = screenWidth/2;
         this.y = screenHeight/2;

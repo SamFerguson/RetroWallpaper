@@ -1,17 +1,18 @@
 
-package com.austin.retry;
+package com.austin.retry.activities.nested;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
+
+import com.austin.retry.adapters.ImageCursorAdapter;
+import com.austin.retry.R;
+import com.austin.retry.WallpaperDBHelper;
 
 
 public class ChooseImageActivity extends AppCompatActivity {
@@ -36,10 +37,6 @@ public class ChooseImageActivity extends AppCompatActivity {
         }
 
         mListView.setAdapter(mCursorAdapter);
-
-
-
-
 
     }
 

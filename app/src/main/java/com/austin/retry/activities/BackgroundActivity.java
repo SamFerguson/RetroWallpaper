@@ -1,5 +1,6 @@
-package com.austin.retry;
+package com.austin.retry.activities;
 
+import android.app.Activity;
 import android.app.WallpaperManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -12,18 +13,24 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.austin.retry.adapters.BackgroundAdapter;
+import com.austin.retry.R;
+import com.austin.retry.wrappers.RecyclerWrapper;
+import com.austin.retry.WPService;
+import com.austin.retry.WallpaperDBHelper;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
-public class ObjectActivity extends AppCompatActivity {
+public class BackgroundActivity extends Activity {
+
     ArrayList<RecyclerWrapper> wrappers = new ArrayList<>();
     private DrawerLayout drawerLayout;
     FloatingActionButton addImg;
@@ -37,7 +44,7 @@ public class ObjectActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager;
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_object);
+        setContentView(R.layout.activity_bkg);
         recyclerView = findViewById(R.id.recycler_view);
 
         addImg = (FloatingActionButton) findViewById(R.id.fab);
@@ -77,15 +84,12 @@ public class ObjectActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         WallpaperDBHelper mHelper = new WallpaperDBHelper(getApplicationContext());
-        Cursor cursor = mHelper.getObject();
+        Cursor cursor = mHelper.getImages();
         cursor.moveToFirst();
 
         for(int i = 0; i < cursor.getCount(); i ++){
             RecyclerWrapper w = new RecyclerWrapper();
-            int id = cursor.getInt(0);
-            String settings = cursor.getString(2);
-            String objectName = cursor.getString(1);
-            String fileName = cursor.getString(3);
+            String fileName = cursor.getString(2);
             System.out.println(getApplicationContext().getFilesDir().getAbsolutePath());
             File f = new File(getApplicationContext().getFilesDir().getAbsolutePath(), fileName+".png");
             w.setFileName(fileName);
@@ -105,22 +109,16 @@ public class ObjectActivity extends AppCompatActivity {
             Point size = new Point();
             display.getSize(size);
             int width = size.x;
-            int displaywidth = width-200;
+            int displaywidth = width-100;
             int displayheight = (int) (displaywidth/aspectRatio);
             Bitmap bScaled = Bitmap.createScaledBitmap(b, displaywidth, displayheight, true);
-            //set image bitmap
             w.setBitmap(bScaled);
-            //set context of thing
             w.setContext(getApplicationContext());
-            //set the object name
-            w.setObjectName(objectName);
-            //set the object settings
-            w.setSettings(settings);
             wrappers.add(w);
             cursor.moveToNext();
         }
 
-        mAdapter = new ObjectAdapter(wrappers);
+        mAdapter = new BackgroundAdapter(wrappers);
         recyclerView.setAdapter(mAdapter);
     }
 }

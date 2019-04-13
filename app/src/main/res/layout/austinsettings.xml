@@ -1,6 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/obj_view"
+    android:layout_height="wrap_content">
+
+
+    <!--<android.support.constraint.ConstraintLayout
+        android:padding="@dimen/pad16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        >
+
+        <Button
+            android:id="@+id/squareImg"
+            android:layout_width="@dimen/sizeObjImgPreview"
+            android:layout_height="@dimen/sizeObjImgPreview"
+            android:contentDescription="@string/foreground"
+            android:background="@drawable/steve_not_impressed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintEnd_toStartOf="@id/circleImg"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/circleImg"
+            android:background="@drawable/round_button"
+            android:layout_width="@dimen/sizeObjImgPreview"
+            android:layout_height="@dimen/sizeObjImgPreview"
+            android:contentDescription="@string/foreground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@id/squareImg"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>-->
+
+    <ImageView
+        android:id="@+id/settingsImg"
+        android:contentDescription="@string/foreground"
+        android:layout_width="@dimen/sizeObjImgPreview"
+        android:layout_height="@dimen/sizeObjImgPreview"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/pad16"/>
+
+    <TextView
+        android:id="@+id/sizeText"
+        style="@style/settingsItemStyle"
+        android:text="@string/objSize"
+        android:layout_marginTop="@dimen/pad16"
+        />
+
+    <SeekBar
+        android:id="@+id/sbSize"
+        style="@style/settingsItemStyle"
+        />
+
+    <TextView
+        android:id="@+id/speedText"
+        style="@style/settingsItemStyle"
+        android:text="@string/objVelocity"
+        android:layout_marginTop="@dimen/pad16"
+        />
+
+    <SeekBar
+        android:id="@+id/sbSpeed"
+        style="@style/settingsItemStyle"
+        />
+
+    <TextView
+        android:id="@+id/angleText"
+        style="@style/settingsItemStyle"
+        android:text="@string/objAngle"
+        android:layout_marginTop="@dimen/pad16"
+        />
+
+    <SeekBar
+        android:id="@+id/sbAngle"
+        style="@style/settingsItemStyle"
+        />
+
+
+
+</LinearLayout>

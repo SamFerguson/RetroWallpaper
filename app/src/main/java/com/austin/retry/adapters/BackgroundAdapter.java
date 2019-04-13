@@ -1,10 +1,6 @@
-package com.austin.retry;
+package com.austin.retry.adapters;
 
-import android.app.LauncherActivity;
-import android.content.Context;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import com.austin.retry.R;
+import com.austin.retry.wrappers.RecyclerWrapper;
+import com.austin.retry.WallpaperDBHelper;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 
 public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.MyViewHolder> {
@@ -38,7 +36,7 @@ public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.My
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    BackgroundAdapter(ArrayList<RecyclerWrapper> bms) {
+    public BackgroundAdapter(ArrayList<RecyclerWrapper> bms) {
         this.wrappers = bms;
     }
 

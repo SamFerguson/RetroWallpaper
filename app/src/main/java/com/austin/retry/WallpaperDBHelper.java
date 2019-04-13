@@ -4,7 +4,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.strictmode.SqliteObjectLeakedViolation;
+
+import com.austin.retry.wrappers.ImageWrapper;
+import com.austin.retry.wrappers.ObjectWrapper;
 
 /**
  * <b>Sam Ferguson</b>, Austin Purtell, Michael Walling

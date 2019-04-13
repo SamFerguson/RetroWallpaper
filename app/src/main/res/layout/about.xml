@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:text="@string/abtDesc"
             android:textSize="@dimen/descSize"
+            android:textAlignment="center"
             android:textColor="@color/highlightWhite"/>
 
     </LinearLayout>

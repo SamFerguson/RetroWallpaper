@@ -1,27 +1,19 @@
-package com.austin.retry;
+package com.austin.retry.extra;
 
 import android.app.Activity;
-import android.app.WallpaperManager;
-import android.content.ComponentName;
-import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Display;
-import android.view.MenuItem;
 import android.view.View;
 
-import java.io.File;
-import java.io.FileInputStream;
+import com.austin.retry.ForegroundObject;
+import com.austin.retry.R;
+import com.austin.retry.WallpaperDBHelper;
+
 import java.util.ArrayList;
 
 public class ForegroundActivity extends Activity {

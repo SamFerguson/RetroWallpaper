@@ -1,7 +1,5 @@
 package com.austin.retry;
 
-import android.content.Context;
-import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
@@ -11,11 +9,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
-import android.support.v4.content.LocalBroadcastManager;
-import android.view.Display;
 import android.view.Surface;
 import android.view.SurfaceHolder;
-import android.view.WindowManager;
+
+import com.austin.retry.wrappers.ImageWrapper;
+import com.austin.retry.wrappers.RecyclerWrapper;
 
 import java.io.File;
 import java.io.FileInputStream;

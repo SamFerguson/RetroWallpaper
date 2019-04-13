@@ -24,7 +24,7 @@
                 android:resource="@xml/wallpaper"/>
         </service>
 
-        <activity android:name="com.austin.retry.MainActivity">
+        <activity android:name="com.austin.retry.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,11 +32,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.austin.retry.ObjectActivity">
+        <activity android:name="com.austin.retry.activities.ObjectActivity">
         </activity>
-        <activity android:name="com.austin.retry.ChooseImageActivity">
+        <activity android:name="com.austin.retry.activities.nested.ChooseImageActivity">
         </activity>
-        <activity android:name="com.austin.retry.BackgroundActivity">
+        <activity android:name="com.austin.retry.activities.BackgroundActivity">
+        </activity>
+        <activity android:name="com.austin.retry.activities.nested.SettingsActivity">
+        </activity>
+        <activity android:name="com.austin.retry.activities.AboutActivity">
+        </activity>
+        <activity android:name="com.austin.retry.activities.UpgradeActivity">
         </activity>
 
     </application>

@@ -1,15 +1,13 @@
-package com.austin.retry;
+package com.austin.retry.extra;
 
-import android.app.WallpaperManager;
 import android.content.Context;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 import android.view.SurfaceHolder;
+
+import com.austin.retry.ForegroundObject;
+import com.austin.retry.R;
 
 public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -23,7 +21,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
         setWillNotDraw(false);
     }
 
-    ForegroundObject foregroundObject = new ForegroundObject(BitmapFactory.decodeResource(getResources(),R.drawable.square));
+    ForegroundObject foregroundObject = new ForegroundObject(BitmapFactory.decodeResource(getResources(), R.drawable.square));
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {

@@ -1,4 +1,4 @@
-package com.austin.retry;
+package com.austin.retry.wrappers;
 
 public class ObjectWrapper {
 

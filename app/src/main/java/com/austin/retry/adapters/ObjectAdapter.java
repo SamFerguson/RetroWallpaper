@@ -1,5 +1,6 @@
-package com.austin.retry;
+package com.austin.retry.adapters;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -10,6 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.austin.retry.R;
+import com.austin.retry.wrappers.RecyclerWrapper;
+import com.austin.retry.WallpaperDBHelper;
+import com.austin.retry.activities.nested.SettingsActivity;
 
 import java.util.ArrayList;
 
@@ -27,7 +33,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
         }
     }
 
-    ObjectAdapter(ArrayList<RecyclerWrapper> bms) {
+    public ObjectAdapter(ArrayList<RecyclerWrapper> bms) {
         this.wrappers = bms;
     }
     public @NonNull
@@ -69,6 +75,11 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
             @Override
             public void onClick(View v) {
                 System.out.println("you clicked: " + b.toString() + "      " + filename);
+
+                Intent i = new Intent(v.getContext(), SettingsActivity.class);
+                i.putExtra("objectID", "object");
+                v.getContext().startActivity(i);
+
             }
         });
 

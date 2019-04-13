@@ -1,6 +1,5 @@
-package com.austin.retry;
+package com.austin.retry.extra;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -10,6 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.austin.retry.ForegroundObject;
+import com.austin.retry.R;
+import com.austin.retry.wrappers.RecyclerWrapper;
+import com.austin.retry.WallpaperDBHelper;
 
 import java.util.ArrayList;
 

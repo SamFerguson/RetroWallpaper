@@ -1,4 +1,4 @@
-package com.austin.retry;
+package com.austin.retry.wrappers;
 
 import android.content.Context;
 import android.graphics.Bitmap;
