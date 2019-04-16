@@ -44,6 +44,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
         return new ObjectAdapter.MyViewHolder(v);
     }
 
+
     public void onBindViewHolder(@NonNull ObjectAdapter.MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
@@ -52,10 +53,11 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
         final String filename = wrapper.getFileName();
         final String name = wrapper.getObjectName();
         String mSettings = wrapper.getSettings();
-        String[] settingsArray = mSettings.split(",");
+        final String[] settingsArray = mSettings.split(",");
         final String size = settingsArray[0];
         final String angle = settingsArray[1];
         final String speed = settingsArray[2];
+        final int objectID = wrapper.getId();
 
         ConstraintLayout temp = holder.constraintLayout;
         ImageView iv = (ImageView) temp.getViewById(R.id.objImgPreview);
@@ -76,8 +78,11 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
             public void onClick(View v) {
                 System.out.println("you clicked: " + b.toString() + "      " + filename);
 
+                //get the id of the one at that position
+                final String itemID = Integer.toString(objectID);
                 Intent i = new Intent(v.getContext(), SettingsActivity.class);
-                i.putExtra("objectID", "object");
+                i.putExtra("objectID", itemID);
+                i.putExtra("currentSettings", settingsArray);
                 v.getContext().startActivity(i);
 
             }

@@ -38,19 +38,68 @@ public class ObjectActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        RecyclerView recyclerView;
-        RecyclerView.Adapter mAdapter;
+        final RecyclerView recyclerView;
+        final RecyclerView.Adapter mAdapter = new ObjectAdapter(wrappers);
         RecyclerView.LayoutManager layoutManager;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_object);
         recyclerView = findViewById(R.id.recycler_view);
+        boolean needUpdate = false;
+        if(getIntent() != null){
+            if(getIntent().getExtras() != null){
+                needUpdate = getIntent().getExtras().getBoolean("key");
+            }
+        }
 
         addImg = (FloatingActionButton) findViewById(R.id.fab);
         addImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Do the same thing as IMage library does right now
+                //open the db
+                WallpaperDBHelper db = new WallpaperDBHelper(getApplicationContext());
+                //make a method that inserts a new object into the thing
+                db.makeDefaultObject();
+                Cursor cursor = db.getObject();
+                cursor.moveToLast();
+                RecyclerWrapper w = new RecyclerWrapper();
+                int id = cursor.getInt(0);
+                w.setId(id);
+                String settings = cursor.getString(2);
+                String objectName = cursor.getString(1);
+                String fileName = cursor.getString(3);
+                System.out.println(getApplicationContext().getFilesDir().getAbsolutePath());
+                File f = new File(getApplicationContext().getFilesDir().getAbsolutePath(), fileName+".png");
+                w.setFileName(fileName);
+                //byte[] bits = cursor.getBlob(2);
+                Bitmap b = null;
+                try{
+                    b = BitmapFactory.decodeStream(new FileInputStream(f));
+                }catch(Exception e){
+                    System.out.println(e.toString());
+                }
+
+                int ogHeight = b.getHeight();
+                int ogWidth= b.getWidth();
+                float aspectRatio = ogWidth/(float)ogHeight;
+
+                Display display = getWindowManager().getDefaultDisplay();
+                Point size = new Point();
+                display.getSize(size);
+                int width = size.x;
+                int displaywidth = width-200;
+                int displayheight = (int) (displaywidth/aspectRatio);
+                Bitmap bScaled = Bitmap.createScaledBitmap(b, displaywidth, displayheight, true);
+                //set image bitmap
+                w.setBitmap(bScaled);
+                //set context of thing
+                w.setContext(getApplicationContext());
+                //set the object name
+                w.setObjectName(objectName);
+                //set the object settings
+                w.setSettings(settings);
+                wrappers.add(w);
+                mAdapter.notifyItemInserted(wrappers.size() - 1);
             }
         });
 
@@ -89,6 +138,7 @@ public class ObjectActivity extends AppCompatActivity {
         for(int i = 0; i < cursor.getCount(); i ++){
             RecyclerWrapper w = new RecyclerWrapper();
             int id = cursor.getInt(0);
+            w.setId(id);
             String settings = cursor.getString(2);
             String objectName = cursor.getString(1);
             String fileName = cursor.getString(3);
@@ -125,8 +175,11 @@ public class ObjectActivity extends AppCompatActivity {
             wrappers.add(w);
             cursor.moveToNext();
         }
-
-        mAdapter = new ObjectAdapter(wrappers);
+        mAdapter.notifyDataSetChanged();
+        if(needUpdate){
+            mAdapter.notifyDataSetChanged();
+        }
         recyclerView.setAdapter(mAdapter);
+
     }
 }

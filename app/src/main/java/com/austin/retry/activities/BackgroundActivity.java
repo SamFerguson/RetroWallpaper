@@ -34,6 +34,9 @@ public class BackgroundActivity extends Activity {
     ArrayList<RecyclerWrapper> wrappers = new ArrayList<>();
     private DrawerLayout drawerLayout;
     FloatingActionButton addImg;
+    boolean amIdoingit = false;
+    int yesYouAre = 0;
+
 
 
     @Override
@@ -44,6 +47,19 @@ public class BackgroundActivity extends Activity {
         RecyclerView.LayoutManager layoutManager;
 
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        try {
+            amIdoingit = intent.getExtras().getBoolean("aaa");
+        }catch(NullPointerException e){ }
+
+        //if you're coming from the settings and setitng the picture
+        if(amIdoingit){
+
+            yesYouAre = intent.getExtras().getInt("objectId");
+
+        }
+
+
         setContentView(R.layout.activity_bkg);
         recyclerView = findViewById(R.id.recycler_view);
 
@@ -118,7 +134,7 @@ public class BackgroundActivity extends Activity {
             cursor.moveToNext();
         }
 
-        mAdapter = new BackgroundAdapter(wrappers);
+        mAdapter = new BackgroundAdapter(wrappers,amIdoingit);
         recyclerView.setAdapter(mAdapter);
     }
 }

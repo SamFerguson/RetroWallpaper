@@ -79,6 +79,11 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    public void updateImage(String fileName, String id){
+
+
+
+    }
 
     public void insertObject(ObjectWrapper object){
         ContentValues mContent = new ContentValues();
@@ -111,14 +116,14 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         //this'll return the object id, the name, settings, and the filepath where the object has a connected wallpaper
         return db.rawQuery("SELECT OBJECT.OBJECT_ID as _id, OBJECT.OBJECT_NAME, OBJECT.OBJECT_SETTINGS, WALLPAPER.IMAGE_DATA " +
-                "from OBJECT, WALLPAPER where WALLPAPER.WALLPAPER_ID = OBJECT.OBJECT_ID",null);
+                "from OBJECT, WALLPAPER where WALLPAPER.WALLPAPER_ID = OBJECT.WALLPAPER_ID",null);
     }
     public Cursor getObjects(){
         SQLiteDatabase db = this.getReadableDatabase();
         //select * from objects where is chosen
         //select objects.settings, wallpaper.settings, from (select * from wallpaper
         return db.rawQuery("SELECT OBJECT.OBJECT_SETTINGS, WALLPAPER.IMAGE_DATA"+
-                " from OBJECT, WALLPAPER where WALLPAPER.WALLPAPER_ID = OBJECT.OBJECT_ID AND OBJECT.IS_CHOSEN = 1",null);
+                " from OBJECT, WALLPAPER where WALLPAPER.WALLPAPER_ID = OBJECT.WALLPAPER_ID AND OBJECT.IS_CHOSEN = 1",null);
     }
 
     public Cursor getSelected(){
@@ -135,6 +140,22 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
                 "(\"skibbity boo\", \"huge,20,315\", 3,1)");
         db.close();
     }
+
+    public void updateObject(String settings, String objectID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        //set the settings to be the csv you pass where Object_id is empty
+        System.out.println(settings + "    " + objectID);
+        db.execSQL("UPDATE OBJECT SET OBJECT_SETTINGS = \"" + settings + "\" WHERE OBJECT_ID = " + objectID);
+    }
+
+    public void makeDefaultObject(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("INSERT INTO OBJECT(OBJECT_NAME, OBJECT_SETTINGS, WALLPAPER_ID, IS_CHOSEN)" +
+                "values(\"DEFAULT\", \"small,100,45\", 1,1);");
+        System.out.println("hello here i am why the fuck doesn't this work");
+        db.close();
+    }
+
 
     public WallpaperDBHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.austin.retry.R;
+import com.austin.retry.activities.BackgroundActivity;
 import com.austin.retry.wrappers.RecyclerWrapper;
 import com.austin.retry.WallpaperDBHelper;
 
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.MyViewHolder> {
 
     private ArrayList<RecyclerWrapper> wrappers = new ArrayList<>();
-
+    private boolean fromSettings;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -36,8 +37,11 @@ public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.My
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public BackgroundAdapter(ArrayList<RecyclerWrapper> bms) {
+    public BackgroundAdapter(ArrayList<RecyclerWrapper> bms, boolean fromSettings) {
         this.wrappers = bms;
+        //if you're coming from the settings then there'll be a different click listener
+        this.fromSettings = fromSettings;
+
     }
 
     // Create new views (invoked by the layout manager)
@@ -62,9 +66,16 @@ public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.My
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("you clicked: " + b.toString() + "      " + filename);
-                SetCheckedAsyncTask setChecked = new SetCheckedAsyncTask(wrapper);
-                setChecked.execute();
+                if(!fromSettings) {
+                    System.out.println("you clicked: " + b.toString() + "      " + filename);
+                    SetCheckedAsyncTask setChecked = new SetCheckedAsyncTask(wrapper);
+                    setChecked.execute();
+                }
+                if(fromSettings){
+                    System.out.println("you're from the settings");
+                    WallpaperDBHelper db = new WallpaperDBHelper(wrapper.getContext());
+                    db.updateImage();
+                }
             }
         });
 

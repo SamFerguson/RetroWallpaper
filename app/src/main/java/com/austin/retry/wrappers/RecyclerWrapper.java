@@ -3,6 +3,8 @@ package com.austin.retry.wrappers;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.austin.retry.WallpaperDBHelper;
+
 public class RecyclerWrapper {
 
     private Bitmap bitmap;
@@ -39,6 +41,7 @@ public class RecyclerWrapper {
 
     public int getId() {
         return id;
+
     }
 
     public void setId(int id) {
