@@ -148,7 +148,9 @@ public class ObjectActivity extends AppCompatActivity {
             //byte[] bits = cursor.getBlob(2);
             Bitmap b = null;
             try{
-                b = BitmapFactory.decodeStream(new FileInputStream(f));
+                FileInputStream fo = new FileInputStream(f);
+                b = BitmapFactory.decodeStream(fo);
+                fo.close();
             }catch(Exception e){
                 System.out.println(e.toString());
             }

@@ -1,5 +1,6 @@
 package com.austin.retry.adapters;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 
 import com.austin.retry.R;
 import com.austin.retry.activities.BackgroundActivity;
+import com.austin.retry.activities.nested.SettingsActivity;
 import com.austin.retry.wrappers.RecyclerWrapper;
 import com.austin.retry.WallpaperDBHelper;
 
@@ -20,7 +22,8 @@ import java.util.ArrayList;
 public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.MyViewHolder> {
 
     private ArrayList<RecyclerWrapper> wrappers = new ArrayList<>();
-    private boolean fromSettings;
+    private int objId = -1;
+    private String[] previousSEttings;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -37,10 +40,11 @@ public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.My
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public BackgroundAdapter(ArrayList<RecyclerWrapper> bms, boolean fromSettings) {
+    public BackgroundAdapter(ArrayList<RecyclerWrapper> bms, int obId,String[] previousSEt) {
         this.wrappers = bms;
         //if you're coming from the settings then there'll be a different click listener
-        this.fromSettings = fromSettings;
+        this.objId = obId;
+        previousSEttings = previousSEt;
 
     }
 
@@ -55,26 +59,32 @@ public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.My
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final RecyclerWrapper wrapper = wrappers.get(position);
         final Bitmap b = wrapper.getBitmap();
         final String filename = wrapper.getFileName();
-
+        System.out.println(objId+ "     " + wrapper.getId());
         holder.imageView.setImageBitmap(b);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!fromSettings) {
+                if(objId == -1) {
                     System.out.println("you clicked: " + b.toString() + "      " + filename);
                     SetCheckedAsyncTask setChecked = new SetCheckedAsyncTask(wrapper);
                     setChecked.execute();
                 }
-                if(fromSettings){
+                else{
                     System.out.println("you're from the settings");
                     WallpaperDBHelper db = new WallpaperDBHelper(wrapper.getContext());
-                    db.updateImage();
+                    //make a new db thing and put the wallpaperid in the object that they clicked on
+                    db.updateImage(wrapper.getId(), objId);
+                    Intent backToSettings = new Intent(holder.imageView.getContext(), SettingsActivity.class);
+                    backToSettings.putExtra("currentbitmapfilename", wrapper.getFileName());
+                    backToSettings.putExtra("currentSettings", previousSEttings);
+                    //go back to the settings
+                    holder.imageView.getContext().startActivity(backToSettings);
                 }
             }
         });

@@ -29,7 +29,17 @@ public class ForegroundObject {
     public ForegroundObject(Bitmap bmp, String size, String angle, String speed){
         image = bmp;
         //TODO: make it so the size is sent in as string with cases to assign size as something other than 200
-        this.size = 200;
+        size = size.toLowerCase();
+        if(size.equals("small")) {
+            this.size = 200;
+        }
+        else if(size.equals("medium")) {
+            this.size = 400;
+        }
+        else{
+            this.size = 600;
+        }
+        image = Bitmap.createScaledBitmap(bmp, this.size, this.size, true);
         this.angle = Integer.parseInt(angle);
         this.speed = Float.parseFloat(speed);
         this.x = screenWidth/2;

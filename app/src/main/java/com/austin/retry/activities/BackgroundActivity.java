@@ -27,6 +27,7 @@ import com.austin.retry.WallpaperDBHelper;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class BackgroundActivity extends Activity {
@@ -35,7 +36,8 @@ public class BackgroundActivity extends Activity {
     private DrawerLayout drawerLayout;
     FloatingActionButton addImg;
     boolean amIdoingit = false;
-    int yesYouAre = 0;
+    int yesYouAre = -1;
+    String[] previousSettings;
 
 
 
@@ -51,15 +53,14 @@ public class BackgroundActivity extends Activity {
         try {
             amIdoingit = intent.getExtras().getBoolean("aaa");
         }catch(NullPointerException e){ }
-
+        System.out.println("you're in the background activity and you're doing it?: " + amIdoingit);
         //if you're coming from the settings and setitng the picture
         if(amIdoingit){
-
             yesYouAre = intent.getExtras().getInt("objectId");
-
+            //get the previous settings
+            previousSettings = intent.getExtras().getStringArray("settings");
         }
-
-
+        System.out.println("you'er in the background activity and you're passed an object_id of: " + yesYouAre);
         setContentView(R.layout.activity_bkg);
         recyclerView = findViewById(R.id.recycler_view);
 
@@ -107,16 +108,19 @@ public class BackgroundActivity extends Activity {
             RecyclerWrapper w = new RecyclerWrapper();
             String fileName = cursor.getString(2);
             System.out.println(getApplicationContext().getFilesDir().getAbsolutePath());
+            w.setId(cursor.getInt(0));
             File f = new File(getApplicationContext().getFilesDir().getAbsolutePath(), fileName+".png");
             w.setFileName(fileName);
             //byte[] bits = cursor.getBlob(2);
             Bitmap b = null;
+
             try{
-                b = BitmapFactory.decodeStream(new FileInputStream(f));
+                FileInputStream fileInputStream = new FileInputStream(f);
+                b = BitmapFactory.decodeStream(fileInputStream);
+                fileInputStream.close();
             }catch(Exception e){
                 System.out.println(e.toString());
             }
-
             int ogHeight = b.getHeight();
             int ogWidth= b.getWidth();
             float aspectRatio = ogWidth/(float)ogHeight;
@@ -133,8 +137,9 @@ public class BackgroundActivity extends Activity {
             wrappers.add(w);
             cursor.moveToNext();
         }
+        cursor.close();
 
-        mAdapter = new BackgroundAdapter(wrappers,amIdoingit);
+        mAdapter = new BackgroundAdapter(wrappers,yesYouAre,previousSettings);
         recyclerView.setAdapter(mAdapter);
     }
 }

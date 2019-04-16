@@ -67,6 +67,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
         TextView textViewSpeed = (TextView) temp.getViewById(R.id.objSpeed);
 
 
+
         objName.setText(name);
         iv.setImageBitmap(b);
         textViewAngle.setText(angle);
@@ -77,11 +78,11 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
             @Override
             public void onClick(View v) {
                 System.out.println("you clicked: " + b.toString() + "      " + filename);
-
                 //get the id of the one at that position
                 final String itemID = Integer.toString(objectID);
                 Intent i = new Intent(v.getContext(), SettingsActivity.class);
                 i.putExtra("objectID", itemID);
+                i.putExtra("currentbitmapfile", filename);
                 i.putExtra("currentSettings", settingsArray);
                 v.getContext().startActivity(i);
 

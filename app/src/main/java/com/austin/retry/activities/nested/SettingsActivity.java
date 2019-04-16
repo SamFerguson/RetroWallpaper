@@ -2,6 +2,8 @@ package com.austin.retry.activities.nested;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +19,9 @@ import com.austin.retry.activities.ObjectActivity;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Objects;
 
 public class SettingsActivity extends Activity {
@@ -40,7 +45,7 @@ public class SettingsActivity extends Activity {
         //we can do this by sending in the object's ID.
         //like this
         //get the settings currently displayed to the object adapter
-        String[] currentSettings = Objects.requireNonNull(getIntent().getExtras()).getStringArray("currentSettings");
+        final String[] currentSettings = Objects.requireNonNull(getIntent().getExtras()).getStringArray("currentSettings");
         assert currentSettings != null;
         String currentSize = currentSettings[0];
         int sizeInt = 0;
@@ -52,18 +57,29 @@ public class SettingsActivity extends Activity {
         }
         String currentSpeed = currentSettings[1];
         String currentAngle = currentSettings[2];
-        String try_objectID = "";
+        String try_objectID = "-1";
+        Bitmap b = BitmapFactory.decodeResource(getResources(),R.drawable.steve_not_impressed);
         try {
+            String filename = (String) getIntent().getExtras().getString("currentbitmapfile");
+            File f = new File(getApplicationContext().getFilesDir().getAbsolutePath(), filename + ".png");
+            try {
+                System.out.println(getApplicationContext().getFilesDir().getAbsolutePath() + filename + ".png");
+                b = BitmapFactory.decodeStream(new FileInputStream(f));
+            } catch (FileNotFoundException reeeeeeeeeeee) {
+            }
             try_objectID = getIntent().getExtras().getString("objectID");
         }catch(NullPointerException nada){
             Intent i = new Intent(getApplicationContext(), ObjectActivity.class);
             startActivity(i);
         }
-
+        imageView = findViewById(R.id.settingsImg);
+        imageView.setImageBitmap(b);
         final String objectID = try_objectID;
         //I'm going to program it with this "objectID in mind"
         // Need to determine what object we're editing
         /*String objectName = savedInstanceState.getString("objectID", "fail");*/
+        //so it's passing the right object_id to the settings.
+        System.out.println("you're in the settings activity and you were passed an object_id of : " +objectID);
 
         sizeSlider = findViewById(R.id.sbSize);
         speedSlider = findViewById(R.id.sbSpeed);
@@ -84,13 +100,16 @@ public class SettingsActivity extends Activity {
         angleSlider.setProgress(Integer.parseInt(currentAngle));
 
 
-        imageView = findViewById(R.id.settingsImg);
+
         //imageView.setImageDrawable();
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i  = new Intent(getApplicationContext(), BackgroundActivity.class);
                 i.putExtra("aaa", true);
+                i.putExtra("objectId", Integer.parseInt(objectID));
+                //have to put the settings in the oldone to go back!!!!
+                i.putExtra("settings", currentSettings);
                 startActivityForResult(i, 69);
 
 

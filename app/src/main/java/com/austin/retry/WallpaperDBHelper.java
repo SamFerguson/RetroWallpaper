@@ -79,9 +79,12 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public void updateImage(String fileName, String id){
+    public void updateImage(int wallpaperID, int objectID){
 
-
+        SQLiteDatabase db = this.getWritableDatabase();
+        //update the object's wallpaperid for the given objectid
+        db.execSQL("update OBJECT SET WALLPAPER_ID = "+wallpaperID+ " WHERE OBJECT_ID = " + objectID);
+        db.close();
 
     }
 
@@ -135,9 +138,9 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("INSERT INTO OBJECT(OBJECT_NAME, OBJECT_SETTINGS, WALLPAPER_ID, IS_CHOSEN)" +
-                "values(\"HOHOHOHOH\", \"large,100,45\", 1,1), " +
-                "(\"weiner\", \"small,50,60\", 2,1)," +
-                "(\"skibbity boo\", \"huge,20,315\", 3,1)");
+                "values(\"HOHOHOHOH\", \"Large,100,45\", 1,1), " +
+                "(\"weiner\", \"Small,50,60\", 2,1)," +
+                "(\"skibbity boo\", \"Medium,20,315\", 3,1)");
         db.close();
     }
 
