@@ -58,6 +58,11 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void doSQL(String s){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(s);
+    }
+
 
     public int getSize(int tableCode){
 

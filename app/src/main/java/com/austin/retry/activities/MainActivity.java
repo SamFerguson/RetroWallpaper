@@ -47,22 +47,33 @@ public class MainActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        WallpaperDBHelper d = new WallpaperDBHelper(this);
 
         SharedPreferences firstTime = getSharedPreferences("default", 0);
+        System.out.println(getResources().getResourceEntryName(R.drawable.bkg));
 
         if(firstTime.getBoolean("first", true)){
-            for(int i =0; i<2; i++) {
-                ImageWrapper img = new ImageWrapper();
-                int resint = (i == 1) ? R.drawable.dvd:R.drawable.bkg;
-                final Bitmap b = BitmapFactory.decodeResource(getResources(), resint);
-                img.setName(Integer.toString(i+1));
-                img.setHelpME(getApplicationContext());
-                img.setBitmap(b);
-                new FileAsync(img).execute();
-                new UploadAsync().execute(img);
-                firstTime.edit().putBoolean("first", false).apply();
-            }
+
+            ImageWrapper img = new ImageWrapper();
+            System.out.println(R.drawable.dvd);
+            final Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.bkg);
+            img.setName("1");
+            img.setHelpME(getApplicationContext());
+            img.setBitmap(b);
+            new FileAsync(img,1).execute();
+            new UploadAsync().execute(img);
+            img = new ImageWrapper();
+
+            final Bitmap c = BitmapFactory.decodeResource(getResources(), R.drawable.dvd);
+            img.setName("2");
+            img.setHelpME(getApplicationContext());
+            img.setBitmap(c);
+            new FileAsync(img,2).execute();
+            new UploadAsync().execute(img);
+            img = new ImageWrapper();
+
+
+            firstTime.edit().putBoolean("first", false).apply();
+
         }
 
 
@@ -227,13 +238,17 @@ public class MainActivity extends Activity {
     static class FileAsync extends AsyncTask<Void, Void, Void>{
 
         private ImageWrapper iw;
-        public FileAsync(ImageWrapper imageWrapper){
+        private int i;
+        public FileAsync(ImageWrapper imageWrapper, int i){
             iw = imageWrapper;
+            this.i = i;
         }
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                FileOutputStream out = new FileOutputStream(iw.getHelpME().getFilesDir().getAbsolutePath()+"/1.png");
+                String AAAAAAAAFUCK = iw.getHelpME().getFilesDir().getAbsolutePath()+"/" + i + ".png";
+                System.out.println(AAAAAAAAFUCK);
+                FileOutputStream out = new FileOutputStream(AAAAAAAAFUCK);
                 iw.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
                 out.close();
             } catch (Exception e) {

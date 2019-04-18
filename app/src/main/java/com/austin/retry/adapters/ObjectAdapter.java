@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -64,6 +65,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
         TextView textViewSize = (TextView) temp.getViewById(R.id.objSize);
         TextView textViewAngle = (TextView) temp.getViewById(R.id.objAngle);
         TextView textViewSpeed = (TextView) temp.getViewById(R.id.objSpeed);
+        //CheckBox isSelected =
 
         iv.setImageBitmap(b);
         textViewAngle.setText(angle);
