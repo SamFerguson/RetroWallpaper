@@ -1,5 +1,6 @@
 package com.austin.retry.activities;
 
+import android.app.Activity;
 import android.app.WallpaperManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -29,7 +30,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
-public class ObjectActivity extends AppCompatActivity {
+public class ObjectActivity extends Activity {
     ArrayList<RecyclerWrapper> wrappers = new ArrayList<>();
     private DrawerLayout drawerLayout;
     FloatingActionButton addImg;
