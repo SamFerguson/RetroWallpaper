@@ -58,7 +58,7 @@ public class SettingsActivity extends Activity {
         String currentSpeed = currentSettings[1];
         String currentAngle = currentSettings[2];
         String try_objectID = "-1";
-        Bitmap b = BitmapFactory.decodeResource(getResources(),R.drawable.steve_not_impressed);
+        Bitmap b = BitmapFactory.decodeResource(getResources(),R.drawable.dvd);
         try {
             String filename = (String) getIntent().getExtras().getString("currentbitmapfile");
             File f = new File(getApplicationContext().getFilesDir().getAbsolutePath(), filename + ".png");

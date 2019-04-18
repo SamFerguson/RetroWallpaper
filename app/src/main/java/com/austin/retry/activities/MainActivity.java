@@ -52,15 +52,17 @@ public class MainActivity extends Activity {
         SharedPreferences firstTime = getSharedPreferences("default", 0);
 
         if(firstTime.getBoolean("first", true)){
-
-            ImageWrapper img = new ImageWrapper();
-            final Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.steve_not_impressed);
-            img.setName("1");
-            img.setHelpME(getApplicationContext());
-            img.setBitmap(b);
-            new FileAsync(img).execute();
-            new UploadAsync().execute(img);
-            firstTime.edit().putBoolean("first", false).apply();
+            for(int i =0; i<2; i++) {
+                ImageWrapper img = new ImageWrapper();
+                int resint = (i == 1) ? R.drawable.dvd:R.drawable.bkg;
+                final Bitmap b = BitmapFactory.decodeResource(getResources(), resint);
+                img.setName(Integer.toString(i+1));
+                img.setHelpME(getApplicationContext());
+                img.setBitmap(b);
+                new FileAsync(img).execute();
+                new UploadAsync().execute(img);
+                firstTime.edit().putBoolean("first", false).apply();
+            }
         }
 
 

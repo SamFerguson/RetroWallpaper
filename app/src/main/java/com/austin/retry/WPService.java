@@ -100,10 +100,8 @@ public class WPService extends WallpaperService {
         /*
          * This is where we would get all of the objects from the objects table
          * where they are marked with selected.
-         */
-
-        ImageWrapper iw = new ImageWrapper();
-        /*
+         *
+         *
          * After we get those objects from the table where they're selected we're going to
          * parse the information and pass them to a recycler wrapper. Then they will be put into
          * maybe an array list
@@ -176,7 +174,7 @@ public class WPService extends WallpaperService {
                 c = holder.lockCanvas();
 
                 if (c != null) {
-                    c.drawColor(0xaa111111); // 0x AA(alpha) RR GG BB (note: lowering alpha will leave residual images)
+                    c.drawColor(0xff115511); // 0x AA(alpha) RR GG BB (note: lowering alpha will leave residual images)
                     c.drawBitmap(bScaled,0,0,paint);
                     update();
                     for(ForegroundObject fg: foregroundObjects) {
