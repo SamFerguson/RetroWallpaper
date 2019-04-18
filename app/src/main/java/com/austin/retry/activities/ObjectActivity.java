@@ -184,6 +184,10 @@ public class ObjectActivity extends Activity {
             mAdapter.notifyDataSetChanged();
         }
         recyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 }
