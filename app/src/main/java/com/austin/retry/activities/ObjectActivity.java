@@ -139,6 +139,7 @@ public class ObjectActivity extends AppCompatActivity {
             RecyclerWrapper w = new RecyclerWrapper();
             int id = cursor.getInt(0);
             w.setId(id);
+            w.setChosen(cursor.getInt(4));
             String settings = cursor.getString(2);
             String objectName = cursor.getString(1);
             String fileName = cursor.getString(3);

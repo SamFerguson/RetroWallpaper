@@ -14,6 +14,8 @@ public class RecyclerWrapper {
     private String objectName;
     private String settings;
     private String idk;
+    private int isChosen;
+
 
     public RecyclerWrapper(){}
 
@@ -48,10 +50,13 @@ public class RecyclerWrapper {
         this.id = id;
     }
 
+    public int isChosen() {
+        return isChosen;
+    }
 
-
-
-
+    public void setChosen(int chosen) {
+        isChosen = chosen;
+    }
 
     public Context getContext() {
         return context;
