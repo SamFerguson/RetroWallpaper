@@ -118,7 +118,7 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
     public Cursor getObject(){
         SQLiteDatabase db = this.getReadableDatabase();
         //this'll return the object id, the name, settings, and the filepath where the object has a connected wallpaper
-        return db.rawQuery("SELECT OBJECT.OBJECT_ID as _id, OBJECT.OBJECT_NAME, OBJECT.OBJECT_SETTINGS, WALLPAPER.IMAGE_DATA " +
+        return db.rawQuery("SELECT OBJECT.OBJECT_ID as _id, OBJECT.OBJECT_NAME, OBJECT.OBJECT_SETTINGS, WALLPAPER.IMAGE_DATA, OBJECT.IS_CHOSEN " +
                 "from OBJECT, WALLPAPER where WALLPAPER.WALLPAPER_ID = OBJECT.WALLPAPER_ID",null);
     }
     public Cursor getObjects(){
@@ -156,6 +156,12 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO OBJECT(OBJECT_NAME, OBJECT_SETTINGS, WALLPAPER_ID, IS_CHOSEN)" +
                 "values(\"DEFAULT\", \"small,100,45\", 1,1);");
         System.out.println("hello here i am why the fuck doesn't this work");
+        db.close();
+    }
+
+    public void setObjectActive(int objID, int isSelected){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("update object set OBJECT.IS_CHOSEN = " + isSelected + " where OBJECT_ID = " + objID + ";");
         db.close();
     }
 
