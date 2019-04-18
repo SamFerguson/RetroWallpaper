@@ -19,17 +19,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/objName"
-        android:layout_width="@dimen/sizeObjImgPreview"
-        android:layout_height="wrap_content"
-        android:text="@string/objName"
-        android:textSize="0sp"
-        android:textAlignment="center"
-        android:layout_marginTop="@dimen/pad16"
-        app:layout_constraintStart_toStartOf="@id/objImgPreview"
-        app:layout_constraintTop_toBottomOf="@id/objImgPreview" />
-
-    <TextView
         android:id="@+id/objSize"
         android:layout_width="@dimen/sizeObjDesc"
         android:layout_height="wrap_content"
@@ -49,7 +38,7 @@
         app:layout_constraintBottom_toBottomOf="@id/objImgPreview"
         app:layout_constraintEnd_toStartOf="@+id/objDesc4"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/objImgPreview"
+        app:layout_constraintStart_toEndOf="@id/objImgPreview"
         app:layout_constraintTop_toBottomOf="@id/objSize" />
 
     <TextView
@@ -59,9 +48,9 @@
         android:text="@string/objAngle"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/objDesc4"
-        app:layout_constraintEnd_toEndOf="@id/isSelected"
+        app:layout_constraintEnd_toStartOf="@id/isSelected"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/objSize"
+        app:layout_constraintStart_toEndOf="@id/objSize"
         app:layout_constraintTop_toTopOf="@id/objImgPreview" />
 
     <TextView
@@ -71,9 +60,9 @@
         android:text="@string/objDesc4"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/objImgPreview"
-        app:layout_constraintEnd_toEndOf="@id/isSelected"
+        app:layout_constraintEnd_toStartOf="@id/isSelected"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/objSpeed"
+        app:layout_constraintStart_toEndOf="@id/objSpeed"
         app:layout_constraintTop_toBottomOf="@id/objAngle" />
 
     <CheckBox
@@ -83,8 +72,8 @@
         app:layout_constraintBottom_toBottomOf="@id/objImgPreview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/objSpeed"
-        app:layout_constraintTop_toBottomOf="@id/objAngle"/>
+        app:layout_constraintStart_toEndOf="@id/objDesc4"
+        app:layout_constraintTop_toTopOf="@id/objImgPreview"/>
 
 
 </android.support.constraint.ConstraintLayout>

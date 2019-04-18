@@ -35,7 +35,7 @@ public class ForegroundAdapter extends RecyclerView.Adapter<ForegroundAdapter.My
             super(c);
             constraintLayout = c;
             imageView = (ImageView) c.findViewById(R.id.objImgPreview);
-            nameView = (TextView) c.findViewById(R.id.objName);
+            //nameView = (TextView) c.findViewById(R.id.objName);
             desc1View = (TextView) c.findViewById(R.id.objSize);
             desc2View = (TextView) c.findViewById(R.id.objSpeed);
             desc3View = (TextView) c.findViewById(R.id.objAngle);
@@ -59,7 +59,7 @@ public class ForegroundAdapter extends RecyclerView.Adapter<ForegroundAdapter.My
 
         ForegroundObject obj = objects.get(position);
         holder.imageView.setImageBitmap(obj.getImage());
-        holder.nameView.setText(obj.getName());
+        //holder.nameView.setText(obj.getName());
         holder.desc1View.setText(String.valueOf(obj.getSize()));
         holder.desc2View.setText(String.valueOf(obj.getSpeed()));
         holder.desc3View.setText(String.valueOf(obj.getAngle()));

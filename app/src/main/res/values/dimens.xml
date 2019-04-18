@@ -3,7 +3,7 @@
     <dimen name="zero">0dp</dimen>
     <dimen name="pad16">16dp</dimen>
     <dimen name="sizeObjImgPreview">100dp</dimen>
-    <dimen name="sizeObjDesc">100dp</dimen>
+    <dimen name="sizeObjDesc">60dp</dimen>
     <dimen name="heightNav">192dp</dimen>
     <dimen name="settingsPad">70dp</dimen>
     <dimen name="titleSize">50sp</dimen>

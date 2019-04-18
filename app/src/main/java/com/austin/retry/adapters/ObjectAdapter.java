@@ -61,14 +61,10 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
 
         ConstraintLayout temp = holder.constraintLayout;
         ImageView iv = (ImageView) temp.getViewById(R.id.objImgPreview);
-        TextView objName = (TextView) temp.getViewById(R.id.objName);
         TextView textViewSize = (TextView) temp.getViewById(R.id.objSize);
         TextView textViewAngle = (TextView) temp.getViewById(R.id.objAngle);
         TextView textViewSpeed = (TextView) temp.getViewById(R.id.objSpeed);
 
-
-
-        objName.setText(name);
         iv.setImageBitmap(b);
         textViewAngle.setText(angle);
         textViewSize.setText(size);
