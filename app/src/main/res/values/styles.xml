@@ -1,16 +1,11 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/highlightWhite</item>
+        <item name="colorPrimary">@color/accentGray</item>
         <item name="colorPrimaryDark">@color/backgroundCharcoal</item>
-        <item name="colorAccent">@color/accentGray</item>
-    </style>
-
-    <style name="AppTheme.Launcher">
-        <item name="android:windowBackground">@drawable/launch_screen</item>
-        <item name="colorPrimaryDark">@color/backgroundCharcoal</item>
+        <item name="colorAccent">@color/highlightWhite</item>
     </style>
 
     <style name="fabStyle">

@@ -16,6 +16,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,7 +36,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     Button butt1;
     private DrawerLayout drawerLayout;
@@ -44,9 +46,10 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
 
         SharedPreferences firstTime = getSharedPreferences("default", 0);
         System.out.println(getResources().getResourceEntryName(R.drawable.bkg));
@@ -141,11 +144,13 @@ public class MainActivity extends Activity {
                             Log.i("Menu Item",menuItem.getItemId() + "");
                         }
                         else if(menuItem.getItemId() == R.id.Upgrade){
-                            WallpaperDBHelper helper = new WallpaperDBHelper(getApplicationContext());
-                            helper.test();
+                            Intent i = new Intent(getApplicationContext(), UpgradeActivity.class);
+                            startActivity(i);
                             Log.i("Menu Item",menuItem.getItemId() + "");
                         }
                         else if(menuItem.getItemId() == R.id.About){
+                            Intent i = new Intent(getApplicationContext(), AboutActivity.class);
+                            startActivity(i);
                             Log.i("Menu Item",menuItem.getItemId() + "");
                         }
                         menuItem.setChecked(true);

@@ -16,6 +16,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,11 +31,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
-public class ObjectActivity extends Activity {
+public class ObjectActivity extends AppCompatActivity {
     ArrayList<RecyclerWrapper> wrappers = new ArrayList<>();
     private DrawerLayout drawerLayout;
     FloatingActionButton addImg;
-
+    private Toolbar myToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,9 @@ public class ObjectActivity extends Activity {
         final RecyclerView recyclerView;
         final RecyclerView.Adapter mAdapter = new ObjectAdapter(wrappers);
         RecyclerView.LayoutManager layoutManager;
+
+        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_object);

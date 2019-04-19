@@ -13,8 +13,10 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +32,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
-public class BackgroundActivity extends Activity {
+public class BackgroundActivity extends AppCompatActivity {
 
     ArrayList<RecyclerWrapper> wrappers = new ArrayList<>();
     private DrawerLayout drawerLayout;
@@ -38,7 +40,7 @@ public class BackgroundActivity extends Activity {
     boolean amIdoingit = false;
     int yesYouAre = -1;
     String[] previousSettings;
-
+    private Toolbar myToolbar;
 
 
     @Override
@@ -47,6 +49,9 @@ public class BackgroundActivity extends Activity {
         RecyclerView recyclerView;
         RecyclerView.Adapter mAdapter;
         RecyclerView.LayoutManager layoutManager;
+
+        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
