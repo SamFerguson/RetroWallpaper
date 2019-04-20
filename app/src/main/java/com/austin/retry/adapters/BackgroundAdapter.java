@@ -40,7 +40,7 @@ public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.My
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public BackgroundAdapter(ArrayList<RecyclerWrapper> bms, int obId,String[] previousSEt) {
+    public BackgroundAdapter(ArrayList<RecyclerWrapper> bms, int obId, String[] previousSEt) {
         this.wrappers = bms;
         //if you're coming from the settings then there'll be a different click listener
         this.objId = obId;
@@ -81,8 +81,9 @@ public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.My
                     //make a new db thing and put the wallpaperid in the object that they clicked on
                     db.updateImage(wrapper.getId(), objId);
                     Intent backToSettings = new Intent(holder.imageView.getContext(), SettingsActivity.class);
-                    backToSettings.putExtra("currentbitmapfilename", wrapper.getFileName());
+                    backToSettings.putExtra("currentbitmapfile", wrapper.getFileName());
                     backToSettings.putExtra("currentSettings", previousSEttings);
+                    backToSettings.putExtra("objectID", Integer.toString(objId));
                     //go back to the settings
                     holder.imageView.getContext().startActivity(backToSettings);
                 }

@@ -61,6 +61,7 @@ public class SettingsActivity extends Activity {
         Bitmap b = BitmapFactory.decodeResource(getResources(),R.drawable.dvd);
         try {
             String filename = (String) getIntent().getExtras().getString("currentbitmapfile");
+            System.out.println(filename);
             File f = new File(getApplicationContext().getFilesDir().getAbsolutePath(), filename + ".png");
             try {
                 System.out.println(getApplicationContext().getFilesDir().getAbsolutePath() + filename + ".png");
@@ -181,11 +182,16 @@ public class SettingsActivity extends Activity {
                 String dataBaseString = sizeString+","+speedString+","+angleString;
                 //update that object's settings.
                 db.updateObject(dataBaseString, objectID);
-                Intent i = new Intent(getApplicationContext(), ObjectActivity.class);
-                i.putExtra("notify", true);
-                startActivity(i);
+                SettingsActivity.this.onBackPressed();
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getApplicationContext(), ObjectActivity.class);
+        i.putExtra("notify", true);
+        startActivity(i);
     }
 }
