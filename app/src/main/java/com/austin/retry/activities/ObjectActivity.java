@@ -46,7 +46,7 @@ public class ObjectActivity extends AppCompatActivity {
         final RecyclerView.Adapter mAdapter = new ObjectAdapter(wrappers);
         RecyclerView.LayoutManager layoutManager;
 
-        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+       // myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         super.onCreate(savedInstanceState);

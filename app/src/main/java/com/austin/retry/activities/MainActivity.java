@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+       // Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+       // setSupportActionBar(myToolbar);
 
 
         SharedPreferences firstTime = getSharedPreferences("default", 0);

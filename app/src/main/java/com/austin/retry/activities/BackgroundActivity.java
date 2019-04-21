@@ -50,7 +50,7 @@ public class BackgroundActivity extends AppCompatActivity {
         RecyclerView.Adapter mAdapter;
         RecyclerView.LayoutManager layoutManager;
 
-        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        //myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         super.onCreate(savedInstanceState);
