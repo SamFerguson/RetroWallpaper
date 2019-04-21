@@ -10,10 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.austin.retry.R;
+import com.austin.retry.activities.ObjectActivity;
 import com.austin.retry.wrappers.RecyclerWrapper;
 import com.austin.retry.WallpaperDBHelper;
 import com.austin.retry.activities.nested.SettingsActivity;
@@ -59,18 +61,32 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
         final String angle = settingsArray[1];
         final String speed = settingsArray[2];
         final int objectID = wrapper.getId();
+        final int isChecked = wrapper.isChosen();
 
         ConstraintLayout temp = holder.constraintLayout;
         ImageView iv = (ImageView) temp.getViewById(R.id.objImgPreview);
         TextView textViewSize = (TextView) temp.getViewById(R.id.objSize);
         TextView textViewAngle = (TextView) temp.getViewById(R.id.objAngle);
         TextView textViewSpeed = (TextView) temp.getViewById(R.id.objSpeed);
-        //CheckBox isSelected =
+        final CheckBox isSelected = (CheckBox) temp.getViewById(R.id.isSelected);
 
+        //if the boolean value is 1 set it to true
+        System.out.println(isChecked);
+        isSelected.setChecked(isChecked == 1);
         iv.setImageBitmap(b);
         textViewAngle.setText(angle);
         textViewSize.setText(size);
         textViewSpeed.setText(speed);
+
+        isSelected.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                WallpaperDBHelper db = new WallpaperDBHelper(wrapper.getContext());
+                db.doSQL("UPDATE OBJECT SET IS_CHOSEN = " + (isChecked? 1:0)+ " WHERE OBJECT_ID = " + objectID);
+                System.out.println("yay i did it");
+
+            }
+        });
 
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override

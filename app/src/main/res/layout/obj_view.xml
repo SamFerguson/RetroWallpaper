@@ -66,9 +66,9 @@
         app:layout_constraintTop_toBottomOf="@id/objAngle" />
 
     <CheckBox
+        android:id="@+id/isSelected"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/isSelected"
         app:layout_constraintBottom_toBottomOf="@id/objImgPreview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

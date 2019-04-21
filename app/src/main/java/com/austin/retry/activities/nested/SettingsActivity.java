@@ -100,8 +100,6 @@ public class SettingsActivity extends Activity {
         speedSlider.setProgress(Integer.parseInt(currentSpeed));
         angleSlider.setProgress(Integer.parseInt(currentAngle));
 
-
-
         //imageView.setImageDrawable();
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

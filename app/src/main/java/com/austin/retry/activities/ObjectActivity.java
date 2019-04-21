@@ -76,6 +76,7 @@ public class ObjectActivity extends AppCompatActivity {
                 System.out.println(getApplicationContext().getFilesDir().getAbsolutePath());
                 File f = new File(getApplicationContext().getFilesDir().getAbsolutePath(), fileName+".png");
                 w.setFileName(fileName);
+                w.setChosen(cursor.getInt(4));
                 //byte[] bits = cursor.getBlob(2);
                 Bitmap b = null;
                 try{
