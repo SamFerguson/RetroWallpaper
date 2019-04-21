@@ -22,4 +22,5 @@
     <string name="objAngle">45°</string>
     <string name="objDesc4">Idk</string>
     <string name="action_home">Home</string>
+    <string name="clear">Clear Objects</string>
 </resources>

@@ -39,7 +39,6 @@ public class ForegroundAdapter extends RecyclerView.Adapter<ForegroundAdapter.My
             desc1View = (TextView) c.findViewById(R.id.objSize);
             desc2View = (TextView) c.findViewById(R.id.objSpeed);
             desc3View = (TextView) c.findViewById(R.id.objAngle);
-            desc4View = (TextView) c.findViewById(R.id.objDesc4);
         }
     }
 

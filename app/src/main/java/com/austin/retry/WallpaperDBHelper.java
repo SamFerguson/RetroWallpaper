@@ -149,6 +149,12 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void clearObjects(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM OBJECT");
+        db.close();
+    }
+
     public void updateObject(String settings, String objectID){
         SQLiteDatabase db = this.getWritableDatabase();
         //set the settings to be the csv you pass where Object_id is empty

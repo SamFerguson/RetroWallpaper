@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import com.austin.retry.adapters.ObjectAdapter;
 import com.austin.retry.R;
@@ -36,6 +37,7 @@ public class ObjectActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     FloatingActionButton addImg;
     private Toolbar myToolbar;
+    private Button clearObjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,8 @@ public class ObjectActivity extends AppCompatActivity {
                 needUpdate = getIntent().getExtras().getBoolean("key");
             }
         }
+        clearObjects = findViewById(R.id.clearObjects);
+
 
         addImg = (FloatingActionButton) findViewById(R.id.fab);
         addImg.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +110,15 @@ public class ObjectActivity extends AppCompatActivity {
                 w.setSettings(settings);
                 wrappers.add(w);
                 mAdapter.notifyItemInserted(wrappers.size() - 1);
+            }
+        });
+        clearObjects.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WallpaperDBHelper db = new WallpaperDBHelper(getApplicationContext());
+                db.clearObjects();
+                wrappers.clear();
+                mAdapter.notifyDataSetChanged();
             }
         });
 
@@ -193,6 +206,7 @@ public class ObjectActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
     }
 }

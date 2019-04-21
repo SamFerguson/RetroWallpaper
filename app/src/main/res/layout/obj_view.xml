@@ -11,69 +11,53 @@
         android:id="@+id/objImgPreview"
         android:layout_width="@dimen/sizeObjImgPreview"
         android:layout_height="@dimen/sizeObjImgPreview"
+        android:layout_marginStart="16dp"
         android:contentDescription="@string/foreground"
-        app:layout_constraintEnd_toStartOf="@+id/objSize"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/objSize"
-        android:layout_width="@dimen/sizeObjDesc"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
         android:text="@string/objSize"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/objImgPreview"
+        app:layout_constraintTop_toBottomOf="@+id/objSpeed" />
 
     <TextView
         android:id="@+id/objSpeed"
         android:layout_width="@dimen/sizeObjDesc"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
         android:text="@string/objVelocity"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@id/objImgPreview"
-        app:layout_constraintEnd_toStartOf="@+id/objDesc4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/objImgPreview"
-        app:layout_constraintTop_toBottomOf="@id/objSize" />
+        app:layout_constraintStart_toEndOf="@+id/objImgPreview"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/objAngle"
-        android:layout_width="@dimen/sizeObjDesc"
+        android:layout_width="68dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
         android:text="@string/objAngle"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/objDesc4"
-        app:layout_constraintEnd_toStartOf="@id/isSelected"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/objSize"
-        app:layout_constraintTop_toTopOf="@id/objImgPreview" />
-
-    <TextView
-        android:id="@+id/objDesc4"
-        android:layout_width="@dimen/sizeObjDesc"
-        android:layout_height="wrap_content"
-        android:text="@string/objDesc4"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@id/objImgPreview"
-        app:layout_constraintEnd_toStartOf="@id/isSelected"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/objSpeed"
-        app:layout_constraintTop_toBottomOf="@id/objAngle" />
+        app:layout_constraintStart_toEndOf="@+id/objSpeed"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/isSelected"
-        android:layout_width="50dp"
+        android:layout_width="35dp"
         android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="@id/objImgPreview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/objDesc4"
-        app:layout_constraintTop_toTopOf="@id/objImgPreview"/>
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toEndOf="@+id/objAngle"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
