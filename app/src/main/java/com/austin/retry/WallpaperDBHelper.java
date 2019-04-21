@@ -166,7 +166,6 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("INSERT INTO OBJECT(OBJECT_NAME, OBJECT_SETTINGS, WALLPAPER_ID, IS_CHOSEN)" +
                 "values(\"DEFAULT\", \"small,100,45\", 1,1);");
-        System.out.println("hello here i am why the fuck doesn't this work");
         db.close();
     }
 

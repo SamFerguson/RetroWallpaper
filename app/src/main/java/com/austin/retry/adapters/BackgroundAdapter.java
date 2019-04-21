@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.austin.retry.R;
 import com.austin.retry.activities.BackgroundActivity;
+import com.austin.retry.activities.MainActivity;
 import com.austin.retry.activities.nested.SettingsActivity;
 import com.austin.retry.wrappers.RecyclerWrapper;
 import com.austin.retry.WallpaperDBHelper;
@@ -74,6 +75,8 @@ public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.My
                     System.out.println("you clicked: " + b.toString() + "      " + filename);
                     SetCheckedAsyncTask setChecked = new SetCheckedAsyncTask(wrapper);
                     setChecked.execute();
+                    Intent backToMain = new Intent(wrapper.getContext(), MainActivity.class);
+                    holder.imageView.getContext().startActivity(backToMain);
                 }
                 else{
                     System.out.println("you're from the settings");
@@ -89,7 +92,6 @@ public class BackgroundAdapter extends RecyclerView.Adapter<BackgroundAdapter.My
                 }
             }
         });
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)

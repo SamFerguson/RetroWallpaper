@@ -57,7 +57,6 @@ public class WPService extends WallpaperService {
         WallpaperDBHelper hello = new WallpaperDBHelper(getApplicationContext());
         Bitmap bgimage;
         //make an array of foreground objects that are chosen
-        ForegroundObject foregroundObject = new ForegroundObject(BitmapFactory.decodeResource(getResources(),R.drawable.square));
         ArrayList<RecyclerWrapper> tempObjects = new ArrayList<>();
         ArrayList<ForegroundObject> foregroundObjects = new ArrayList<>();
 
@@ -174,7 +173,7 @@ public class WPService extends WallpaperService {
                 c = holder.lockCanvas();
 
                 if (c != null) {
-                    c.drawColor(0xff115511); // 0x AA(alpha) RR GG BB (note: lowering alpha will leave residual images)
+                    c.drawColor(0xffffffff); // 0x AA(alpha) RR GG BB (note: lowering alpha will leave residual images)
                     c.drawBitmap(bScaled,0,0,paint);
                     update();
                     for(ForegroundObject fg: foregroundObjects) {

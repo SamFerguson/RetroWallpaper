@@ -53,7 +53,9 @@ public class SettingsActivity extends Activity {
             if(!currentSize.toLowerCase().equals("medium")){
                 sizeInt  = 2;
             }
-            sizeInt = 1;
+            else {
+                sizeInt = 1;
+            }
         }
         String currentSpeed = currentSettings[1];
         String currentAngle = currentSettings[2];

@@ -57,6 +57,7 @@ public class BackgroundActivity extends AppCompatActivity {
         Intent intent = getIntent();
         setContentView(R.layout.activity_bkg);
         addImg =  findViewById(R.id.fab);
+        addImg.hide();
         try {
             amIdoingit = intent.getExtras().getBoolean("aaa");
         }catch(NullPointerException e){ }
@@ -66,7 +67,7 @@ public class BackgroundActivity extends AppCompatActivity {
             yesYouAre = intent.getExtras().getInt("objectId");
             //get the previous settings
             previousSettings = intent.getExtras().getStringArray("settings");
-            addImg.hide();
+
         }
         System.out.println("you'er in the background activity and you're passed an object_id of: " + yesYouAre);
 

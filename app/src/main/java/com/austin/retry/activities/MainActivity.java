@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button butt1;
     private DrawerLayout drawerLayout;
-    private final int RESULT_IMG = 69; //heh
+    private final int RESULT_IMG = 69;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,30 +173,18 @@ public class MainActivity extends AppCompatActivity {
             ImageWrapper img = new ImageWrapper();
             if (result == RESULT_OK) {
                 try {
-                    //get image data from the gallery
                     final Uri image = data.getData();
-                    //something I don't understand
                     if (image != null) {
                         final InputStream stream = getContentResolver().openInputStream(image);
                         final Bitmap input = BitmapFactory.decodeStream(stream);
-
-                        //the bitmap from the gallery
-
-                        //these few lines are some code I found @
                         //https://stackoverflow.com/questions/4989182/converting-java-bitmap-to-byte-array
-                        //to convert to byte array
                         ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
                         input.compress(Bitmap.CompressFormat.PNG, 100, stream2);
                         byte[] temp = stream2.toByteArray();
-
-                        //probably deprecated
-                        Drawable draw = new BitmapDrawable(getResources(), input);
                         //get file name to pass to database
                         String filename = image.getLastPathSegment();
                         File f = new File(filename);
                         String imageName = f.getName();
-
-                        //set the struct class variables to pass to db
                         img.setBlob(temp);
                         img.setName(imageName);
                         img.setHelpME(getApplicationContext());
@@ -251,9 +239,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                String AAAAAAAAFUCK = iw.getHelpME().getFilesDir().getAbsolutePath()+"/" + i + ".png";
-                System.out.println(AAAAAAAAFUCK);
-                FileOutputStream out = new FileOutputStream(AAAAAAAAFUCK);
+                String AAAAAAAA = iw.getHelpME().getFilesDir().getAbsolutePath()+"/" + i + ".png";
+                System.out.println(AAAAAAAA);
+                FileOutputStream out = new FileOutputStream(AAAAAAAA);
                 iw.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
                 out.close();
             } catch (Exception e) {

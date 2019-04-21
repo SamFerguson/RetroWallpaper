@@ -26,9 +26,8 @@ public class ForegroundObject {
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
-    public ForegroundObject(Bitmap bmp, String size, String angle, String speed){
+    public ForegroundObject(Bitmap bmp, String size, String speed ,String angle){
         image = bmp;
-        //TODO: make it so the size is sent in as string with cases to assign size as something other than 200
         size = size.toLowerCase();
         if(size.equals("small")) {
             this.size = 200;
