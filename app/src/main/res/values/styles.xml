@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/accentGray</item>
         <item name="colorPrimaryDark">@color/backgroundCharcoal</item>
-        <item name="colorAccent">@color/highlightWhite</item>
+        <item name="colorAccent">@color/highlightAqua</item>
     </style>
 
     <style name="fabStyle">

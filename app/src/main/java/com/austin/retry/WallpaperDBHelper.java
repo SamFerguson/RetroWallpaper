@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.austin.retry.wrappers.ImageWrapper;
-import com.austin.retry.wrappers.ObjectWrapper;
 
 /**
  * <b>Sam Ferguson</b>, Austin Purtell, Michael Walling
@@ -93,21 +92,6 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertObject(ObjectWrapper object){
-        ContentValues mContent = new ContentValues();
-        SQLiteDatabase db = this.getWritableDatabase();
-        mContent.put("OBJECT_NAME", object.getObjectName());
-        mContent.put("OBJECT_SETTINGS", object.getSettings());
-        mContent.put("WALLPAPER_ID", object.getImage_Id());
-        mContent.put("IS_CHOSEN", false);
-        db.insert("OBJECT", null, mContent);
-    }
-
-    public void changeObjectName(ObjectWrapper object, String s){
-        SQLiteDatabase db = this.getWritableDatabase();
-        //set the objectname to be string on the object that you pass
-        db.execSQL("UPDATE OBJECT SET OBJECT_NAME = "+ s+ " WHERE OBJECT_ID = "+object.getObjectId());
-    }
 
     public void setSelected(String fileName){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -139,15 +123,6 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT WALLPAPER.*, WALLPAPER.WALLPAPER_ID AS _id FROM WALLPAPER WHERE IS_CHOSEN = 1",null);
     }
 
-    public void test(){
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("INSERT INTO OBJECT(OBJECT_NAME, OBJECT_SETTINGS, WALLPAPER_ID, IS_CHOSEN)" +
-                "values(\"HOHOHOHOH\", \"Large,100,45\", 1,1), " +
-                "(\"weiner\", \"Small,50,60\", 2,1)," +
-                "(\"skibbity boo\", \"Medium,20,315\", 3,1)");
-        db.close();
-    }
 
     public void clearObjects(){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -166,12 +141,6 @@ public class WallpaperDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("INSERT INTO OBJECT(OBJECT_NAME, OBJECT_SETTINGS, WALLPAPER_ID, IS_CHOSEN)" +
                 "values(\"DEFAULT\", \"small,100,45\", 1,1);");
-        db.close();
-    }
-
-    public void setObjectActive(int objID, int isSelected){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("update object set OBJECT.IS_CHOSEN = " + isSelected + " where OBJECT_ID = " + objID + ";");
         db.close();
     }
 
