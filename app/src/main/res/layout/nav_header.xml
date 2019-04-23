@@ -3,15 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/heightNav"
     android:background="@color/backgroundCharcoal"
-    android:padding="@dimen/pad16"
     android:theme="@style/AppTheme"
     android:orientation="vertical"
     android:gravity="bottom">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/pad16"
+        android:src="@drawable/logo" />
+
+    <!--
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/navTitle"
         android:textColor="@color/highlightWhite" />
+     -->
 
 </LinearLayout>
