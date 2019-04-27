@@ -72,72 +72,9 @@ public class MainActivity extends AppCompatActivity {
             img.setBitmap(c);
             new FileAsync(img,2).execute();
             new UploadAsync().execute(img);
-            img = new ImageWrapper();
 
-            final Bitmap d = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
-            img.setName("3");
-            img.setHelpME(getApplicationContext());
-            img.setBitmap(d);
-            new FileAsync(img,3).execute();
-            new UploadAsync().execute(img);
-            img = new ImageWrapper();
-
-            final Bitmap e = BitmapFactory.decodeResource(getResources(), R.drawable.square);
-            img.setName("4");
-            img.setHelpME(getApplicationContext());
-            img.setBitmap(e);
-            new FileAsync(img,4).execute();
-            new UploadAsync().execute(img);
-            img = new ImageWrapper();
-
-            final Bitmap f = BitmapFactory.decodeResource(getResources(), R.drawable.triangle);
-            img.setName("5");
-            img.setHelpME(getApplicationContext());
-            img.setBitmap(f);
-            new FileAsync(img,5).execute();
-            new UploadAsync().execute(img);
-            img = new ImageWrapper();
-
-            final Bitmap g = BitmapFactory.decodeResource(getResources(), R.drawable.star);
-            img.setName("6");
-            img.setHelpME(getApplicationContext());
-            img.setBitmap(g);
-            new FileAsync(img,6).execute();
-            new UploadAsync().execute(img);
-            img = new ImageWrapper();
-
-            final Bitmap h = BitmapFactory.decodeResource(getResources(), R.drawable.bolt);
-            img.setName("7");
-            img.setHelpME(getApplicationContext());
-            img.setBitmap(h);
-            new FileAsync(img,7).execute();
-            new UploadAsync().execute(img);
-            img = new ImageWrapper();
-
-            final Bitmap i = BitmapFactory.decodeResource(getResources(), R.drawable.heart);
-            img.setName("8");
-            img.setHelpME(getApplicationContext());
-            img.setBitmap(i);
-            new FileAsync(img,8).execute();
-            new UploadAsync().execute(img);
-            img = new ImageWrapper();
-
-            final Bitmap j = BitmapFactory.decodeResource(getResources(), R.drawable.x);
-            img.setName("9");
-            img.setHelpME(getApplicationContext());
-            img.setBitmap(j);
-            new FileAsync(img,9).execute();
-            new UploadAsync().execute(img);
-            img = new ImageWrapper();
-
-            final Bitmap l = BitmapFactory.decodeResource(getResources(), R.drawable.gear);
-            img.setName("10");
-            img.setHelpME(getApplicationContext());
-            img.setBitmap(l);
-            new FileAsync(img,10).execute();
-            new UploadAsync().execute(img);
-            //img = new ImageWrapper();
-
+            //having more asyncs would cause a bug on opening, would need splash screen
+            
             firstTime.edit().putBoolean("first", false).apply();
 
         }
@@ -280,12 +217,11 @@ public class MainActivity extends AppCompatActivity {
             test.moveToFirst();
             //System.out.println("image id " + test.getString(0) + " image name " + test.getString(1)+
                     //(test.getInt(3)==0) + test.getString(2));
-            Cursor test2 = mHelper.getSelected();
-            test2.moveToFirst();
+
             System.out.println("image id " + test.getString(0) + " image name " + test.getString(1)+
                     (test.getInt(3)==0) + test.getString(2));
             test.close();
-            test2.close();
+
             return new Byte[0];
 
         }
