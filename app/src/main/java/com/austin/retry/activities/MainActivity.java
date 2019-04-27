@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             new UploadAsync().execute(img);
 
             //having more asyncs would cause a bug on opening, would need splash screen
-            
+
             firstTime.edit().putBoolean("first", false).apply();
 
         }
